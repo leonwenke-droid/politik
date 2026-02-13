@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lernplakat: Weltwirtschaftliche Verflechtungen | Abitur PoWi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+  <style>
+    :root {
+      --primary: #1a472a;
+      --primary-light: #2d5a3d;
+      --accent: #d4a574;
+      --accent-bright: #e6b88a;
+      --bg: #faf8f3;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --border: #e0ddd5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    .app { min-height: 100vh; }
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      margin: 0 0 0.5rem 0;
+      animation: slideDown 0.6s ease-out;
+    }
+    .header p {
+      margin: 0;
+      opacity: 0.95;
+      font-size: 0.95rem;
+      animation: slideDown 0.6s ease-out 0.1s both;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+    .nav-btn {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.6rem 0.9rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+    .nav-btn:hover { color: var(--primary); background: var(--bg); }
+    .nav-btn.active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+      border-radius: 0;
+    }
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      animation: fadeIn 0.6s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin: 0 0 1rem 0;
+    }
+    .section-intro {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 4px solid transparent;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border-top-color: var(--accent);
+    }
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin: 0 0 0.75rem 0;
+    }
+    .card-content { font-size: 0.95rem; }
+    .card-content p { margin: 0 0 0.5rem 0; }
+    .card-content ul { margin: 0.5rem 0 0 1.25rem; padding: 0; }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    @media (max-width: 640px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comparison-card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--accent);
+    }
+    .comparison-card h3 { margin: 0 0 1rem 0; font-size: 1.25rem; color: var(--primary); }
+    .comparison-card ul { margin: 0; padding-left: 1.25rem; }
+    .comparison-card li { margin-bottom: 0.5rem; }
+    .pro { border-left-color: #2d5a3d; }
+    .con { border-left-color: #8b6914; }
+    .example-box {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+    .example-box .label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .flow-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .flow-box {
+      background: var(--surface);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .flow-arrow { color: var(--text-muted); font-size: 1.25rem; }
+    .glossary-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .glossary-table th,
+    .glossary-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .glossary-table th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+    .glossary-table tr:last-child td { border-bottom: none; }
+    .glossary-table td:first-child { font-weight: 500; color: var(--primary); }
+    /* Quiz */
+    .quiz-card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .quiz-card h3 { margin: 0 0 1rem 0; font-size: 1.1rem; color: var(--text); }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; }
+    .quiz-option {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .quiz-option:hover:not(.disabled) { border-color: var(--primary-light); background: var(--bg); }
+    .quiz-option.correct { border-color: #2d5a3d; background: #e8f0ea; }
+    .quiz-option.wrong { border-color: #a63d3d; background: #fce8e8; }
+    .quiz-option.disabled { cursor: default; opacity: 0.85; }
+    .quiz-explanation {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      background: var(--bg);
+      font-size: 0.95rem;
+      border-left: 4px solid var(--primary);
+    }
+    .quiz-score {
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      border-radius: 16px;
+      margin-top: 1.5rem;
+    }
+    .quiz-score .number { font-size: 2.5rem; font-weight: 700; }
+    .quiz-score .label { opacity: 0.95; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" data-presets="react">
+    const { useState } = React;
+
+    const TABS = [
+      { id: 'global', label: '🌍 Globalisierung', component: 'GlobalSection' },
+      { id: 'theories', label: '📊 Erklärungsansätze', component: 'TheoriesSection' },
+      { id: 'leitbilder', label: '⚖️ Leitbilder', component: 'LeitbilderSection' },
+      { id: 'hemmnisse', label: '🚧 Handelshemmnisse', component: 'HemmnisseSection' },
+      { id: 'regime', label: '🤝 Handelsregime', component: 'RegimeSection' },
+      { id: 'quiz', label: '🎯 Quiz', component: 'QuizSection' },
+    ];
+
+    function GlobalSection() {
+      return (
+        <div className="content">
+          <h2 className="section-title">Ökonomische Globalisierung</h2>
+          <p className="section-intro">
+            Die weltweite Verflechtung von Volkswirtschaften durch Handel und Investitionen prägt die Gegenwart. Hier die zentralen Merkmale.
+          </p>
+          <div className="cards-grid">
+            <div className="card">
+              <div className="card-icon">📈</div>
+              <h3 className="card-title">Welthandelsvolumen</h3>
+              <div className="card-content">
+                <p>Das Volumen des Welthandels ist über Jahrzehnte stärker gewachsen als die Weltwirtschaft. Handel treibt Wachstum und Arbeitsteilung.</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-icon">🔄</div>
+              <h3 className="card-title">Welthandelsströme</h3>
+              <div className="card-content">
+                <p>Güter und Dienstleistungen fließen zwischen allen Regionen. Wichtige Ströme: EU–China, EU–USA, Asien–Europa, Nord-Süd.</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-icon">💼</div>
+              <h3 className="card-title">Direktinvestitionen (FDI)</h3>
+              <div className="card-content">
+                <p>Foreign Direct Investment: langfristige Auslandsinvestitionen mit Kontrolle (mind. 10 % Beteiligung). Erleichtern Technologietransfer und Verflechtung.</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-icon">🏢</div>
+              <h3 className="card-title">Multinationale Konzerne</h3>
+              <div className="card-content">
+                <p>Unternehmen mit Produktion und Tochtergesellschaften in mehreren Ländern. Sie prägen Handelsströme, Steuerwettbewerb und Arbeitsstandards.</p>
+              </div>
+            </div>
+          </div>
+          <h3 style={{ marginTop: '2rem', marginBottom: '0.75rem', color: 'var(--primary)' }}>Schlüsselbegriffe</h3>
+          <table className="glossary-table">
+            <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td>Globalisierung</td><td>Zunehmende weltweite Verflechtung in Wirtschaft, Politik, Kultur</td></tr>
+              <tr><td>Welthandel</td><td>Grenzüberschreitender Austausch von Gütern und Dienstleistungen</td></tr>
+              <tr><td>FDI</td><td>Langfristige Auslandsinvestitionen mit Kontrolle (mind. 10 %)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    function TheoriesSection() {
+      return (
+        <div className="content">
+          <h2 className="section-title">Erklärungsansätze für internationalen Handel</h2>
+          <p className="section-intro">
+            Warum handeln Länder? Drei zentrale Theorien: absolute und komparative Kostenvorteile sowie intraindustrieller Handel.
+          </p>
+          <div className="cards-grid">
+            <div className="card">
+              <div className="card-icon">📐</div>
+              <h3 className="card-title">Absolute Kostenvorteile (Adam Smith)</h3>
+              <div className="card-content">
+                <p>Jedes Land produziert das, was es am effizientesten herstellen kann. Spezialisierung auf Güter mit absolut niedrigeren Produktionskosten.</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-icon">⚖️</div>
+              <h3 className="card-title">Komparative Kostenvorteile (Ricardo)</h3>
+              <div className="card-content">
+                <p>Handel lohnt sich auch ohne absolute Vorteile. Entscheidend sind relative Kostenunterschiede (Opportunitätskosten). Jedes Land spezialisiert sich auf das Gut mit dem geringsten relativen Nachteil.</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-icon">🔄</div>
+              <h3 className="card-title">Intraindustrieller Handel</h3>
+              <div className="card-content">
+                <p>Handel mit ähnlichen Produkten derselben Branche (z. B. Deutschland exportiert und importiert Autos). Erklärungen: Produktdifferenzierung, Skaleneffekte, Konsumentenpräferenzen.</p>
+              </div>
+            </div>
+          </div>
+          <div className="comparison-grid">
+            <div className="comparison-card">
+              <h3>Smith vs. Ricardo</h3>
+              <ul>
+                <li><strong>Smith:</strong> Absolute Kostenvorteile – ein Land ist in einem Gut „einfach besser“.</li>
+                <li><strong>Ricardo:</strong> Relative Kosten – auch wenn ein Land in allem besser ist, lohnt sich Spezialisierung nach Opportunitätskosten.</li>
+              </ul>
+            </div>
+            <div className="example-box">
+              <div className="label">Praxisbeispiel</div>
+              <p><strong>Deutschland:</strong> Export und Import von Kraftfahrzeugen – typisch für intraindustriellen Handel (verschiedene Marken und Segmente).</p>
+            </div>
+          </div>
+          <table className="glossary-table">
+            <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td>Opportunitätskosten</td><td>Verzicht auf die nächstbeste Alternative</td></tr>
+              <tr><td>Komparative Kostenvorteile</td><td>Spezialisierung auf Güter mit den geringsten Opportunitätskosten</td></tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    function LeitbilderSection() {
+      return (
+        <div className="content">
+          <h2 className="section-title">Leitbilder: Freihandel & Protektionismus</h2>
+          <p className="section-intro">
+            Zwei Grundpositionen der Außenhandelspolitik – mit Pro- und Contra-Argumenten.
+          </p>
+          <div className="comparison-grid">
+            <div className="comparison-card pro">
+              <h3>Freihandel</h3>
+              <p><strong>Idee:</strong> Minimale staatliche Eingriffe.</p>
+              <p><strong>Pro:</strong> Wohlstandsgewinne, niedrigere Preise, Effizienz, größere Produktauswahl, Innovation.</p>
+              <p><strong>Contra:</strong> Arbeitsplatzverluste, Ausbeutung, Umweltschäden, Abhängigkeiten, ungleiche Ausgangsbedingungen.</p>
+            </div>
+            <div className="comparison-card con">
+              <h3>Protektionismus</h3>
+              <p><strong>Idee:</strong> Schutz der heimischen Wirtschaft.</p>
+              <p><strong>Pro:</strong> Schutz von Arbeitsplätzen, Aufbau junger Industrien, nationale Sicherheit, Schutz vor Dumping, strategische Branchen.</p>
+              <p><strong>Contra:</strong> Höhere Preise, Ineffizienz, Handelskriege, Wohlstandsverluste, Benachteiligung armer Länder.</p>
+            </div>
+          </div>
+          <div className="example-box">
+            <div className="label">Beispiel: EU-Mercosur</div>
+            <p>Partner: EU und Mercosur (Brasilien, Argentinien, Uruguay, Paraguay). <strong>Pro:</strong> Neue Märkte, niedrigere Zölle, Wachstum. <strong>Contra:</strong> Gefahr für EU-Landwirtschaft, Umwelt (Regenwald), Arbeitsstandards. Zeigt Spannung zwischen Wirtschaft und Ökologie/Sozialem.</p>
+          </div>
+        </div>
+      );
+    }
+
+    function HemmnisseSection() {
+      return (
+        <div className="content">
+          <h2 className="section-title">Handelshemmnisse</h2>
+          <p className="section-intro">
+            Tarifäre und nichttarifäre Instrumente der Handelspolitik – mit Wirkungen und Beispielen.
+          </p>
+          <div className="comparison-grid">
+            <div className="card">
+              <div className="card-icon">📋</div>
+              <h3 className="card-title">Tarifäre Hemmnisse (Zölle)</h3>
+              <div className="card-content">
+                <p><strong>Wertzoll:</strong> Prozentsatz vom Warenwert. <strong>Mengenzoll:</strong> Fester Betrag pro Einheit.</p>
+                <p><strong>Arten:</strong> Schutzzoll, Erziehungszoll, Finanzzoll.</p>
+                <p><strong>Wirkungen:</strong> Importe werden teurer → heimische Produkte wettbewerbsfähiger, Staatseinnahmen, höhere Preise für Konsumenten, Gefahr von Vergeltungszöllen.</p>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-icon">🚫</div>
+              <h3 className="card-title">Nichttarifäre Hemmnisse</h3>
+              <div className="card-content">
+                <p>Importquoten, Normen & Standards, Subventionen, bürokratische Hürden, Embargo, „Buy Local“. Schwerer zu messen als Zölle; nehmen oft zu, wenn Zölle abgebaut werden.</p>
+              </div>
+            </div>
+          </div>
+          <div className="flow-diagram">
+            <span className="flow-box">Zoll/Quote</span>
+            <span className="flow-arrow">→</span>
+            <span className="flow-box">Import teurer/knapper</span>
+            <span className="flow-arrow">→</span>
+            <span className="flow-box">Heimische Anbieter profitieren</span>
+            <span className="flow-arrow">→</span>
+            <span className="flow-box">Konsumenten zahlen mehr</span>
+          </div>
+          <div className="example-box">
+            <div className="label">Beispiel: US-Zölle unter Trump (2024/25)</div>
+            <p>Strafzölle auf chinesische Waren (25–50 %), Stahlzölle (25 %) auch gegen EU/Kanada. Begründung: Arbeitsplätze, nationale Sicherheit. Folgen: Handelskrieg, Vergeltungszölle, höhere Preise.</p>
+          </div>
+        </div>
+      );
+    }
+
+    function RegimeSection() {
+      return (
+        <div className="content">
+          <h2 className="section-title">Handelsregime & WTO</h2>
+          <p className="section-intro">
+            Die WTO und internationale Handelsabkommen bilden das Regelwerk des Welthandels.
+          </p>
+          <div className="card">
+            <div className="card-icon">🌐</div>
+            <h3 className="card-title">WTO (World Trade Organization)</h3>
+            <div className="card-content">
+              <p>Gründung 1995 (Nachfolger GATT 1947), 164 Mitglieder (2024). <strong>Ziele:</strong> Liberalisierung, Abbau von Hemmnissen, regelbasierter Handel, Streitschlichtung. <strong>Prinzipien:</strong> Meistbegünstigung, Inländerbehandlung, Transparenz, Reziprozität.</p>
+              <p><strong>WTO in der Krise:</strong> USA blockieren Berufungsinstanz (seit 2019), Doha-Runde gescheitert, Protektionismus, neue Themen (Digitales, Klima, Arbeitsnormen) nicht geregelt.</p>
+            </div>
+          </div>
+          <h3 style={{ marginTop: '1.5rem', marginBottom: '0.75rem', color: 'var(--primary)' }}>Arten von Handelsabkommen</h3>
+          <ul>
+            <li><strong>Multilateral:</strong> Viele Staaten (z. B. WTO)</li>
+            <li><strong>Regional:</strong> Benachbarte Länder (EU, ASEAN, Mercosur)</li>
+            <li><strong>Bilateral:</strong> Zwei Staaten/Blöcke (z. B. EU-Japan, CETA)</li>
+          </ul>
+          <p><strong>Beispiele:</strong> CETA (EU-Kanada), RCEP (Asien-Pazifik), USMCA (USA-Mexiko-Kanada), AfCFTA (Afrika).</p>
+          <table className="glossary-table">
+            <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td>Meistbegünstigung</td><td>Handelserleichterungen für alle WTO-Mitglieder gleich</td></tr>
+              <tr><td>Inländerbehandlung</td><td>Gleichbehandlung in- und ausländischer Waren</td></tr>
+              <tr><td>Reziprozität</td><td>Gegenseitigkeit beim Abbau von Hemmnissen</td></tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    const QUIZ_QUESTIONS = [
+      {
+        question: 'Was beschreiben komparative Kostenvorteile (Ricardo)?',
+        options: [
+          'Spezialisierung nach relativen Kosten (Opportunitätskosten) – Handel lohnt auch ohne absolute Vorteile.',
+          'Nur Länder mit absoluten Kostenvorteilen sollten handeln.',
+          'Handel nur innerhalb derselben Branche.',
+          'Zölle sind nötig, damit sich Spezialisierung lohnt.'
+        ],
+        correct: 0,
+        explanation: 'Ricardo zeigt: Entscheidend sind relative Kosten. Ein Land spezialisiert sich auf das Gut, bei dem es den geringsten relativen Nachteil hat – so entstehen Wohlstandsgewinne für alle.'
+      },
+      {
+        question: 'Welches Instrument ist ein nichttarifäres Handelshemmnis?',
+        options: ['Wertzoll', 'Mengenzoll', 'Importquote', 'Finanzzoll'],
+        correct: 2,
+        explanation: 'Eine Importquote begrenzt die Menge der Einfuhren und ist damit ein nichttarifäres Hemmnis. Zölle (Wert- und Mengenzoll, Finanzzoll) sind tarifär.'
+      },
+      {
+        question: 'Was bedeutet das WTO-Prinzip der Meistbegünstigung?',
+        options: [
+          'Die reichsten Länder werden bevorzugt.',
+          'Handelserleichterungen, die einem Land gewährt werden, gelten für alle Mitglieder gleich.',
+          'Nur die wichtigsten Handelspartner werden begünstigt.',
+          'Zölle müssen für alle Waren gleich sein.'
+        ],
+        correct: 1,
+        explanation: 'Meistbegünstigung: Jede Handelserleichterung, die ein Mitglied einem anderen gewährt, muss allen WTO-Mitgliedern gewährt werden – keine Diskriminierung.'
+      },
+      {
+        question: 'Intraindustrieller Handel liegt vor, wenn …',
+        options: [
+          'nur Rohstoffe gehandelt werden.',
+          'ein Land nur exportiert und nicht importiert.',
+          'ähnliche Produkte derselben Branche gehandelt werden (z. B. Autos in beide Richtungen).',
+          'nur Dienstleistungen gehandelt werden.'
+        ],
+        correct: 2,
+        explanation: 'Intraindustrieller Handel = Handel mit ähnlichen Produkten derselben Branche, z. B. Deutschland exportiert und importiert Pkw (verschiedene Marken/Segmente).'
+      },
+      {
+        question: 'Welche Aussage zum Protektionismus trifft zu?',
+        options: [
+          'Er senkt immer die Preise für Konsumenten.',
+          'Er kann Arbeitsplätze schützen, führt aber oft zu höheren Preisen und Wohlstandsverlusten.',
+          'Er wird von der WTO ausnahmslos verboten.',
+          'Er hat keine Auswirkung auf andere Länder.'
+        ],
+        correct: 1,
+        explanation: 'Protektionismus kann heimische Jobs schützen, geht aber mit höheren Preisen, ineffizienter Produktion und der Gefahr von Handelskriegen einher.'
+      },
+      {
+        question: 'FDI (Foreign Direct Investment) bezeichnet …',
+        options: [
+          'kurzfristige Spekulation an Devisenmärkten.',
+          'langfristige Auslandsinvestitionen mit Kontrolle (mind. 10 % Beteiligung).',
+          'staatliche Entwicklungshilfe.',
+          'Handelskredite zwischen Unternehmen.'
+        ],
+        correct: 1,
+        explanation: 'FDI = langfristige Direktinvestitionen im Ausland mit Kontrolle über das Unternehmen (typisch mind. 10 % Stimmrechte).'
+      },
+      {
+        question: 'Warum gilt die WTO derzeit als „in der Krise“?',
+        options: [
+          'Sie hat zu viele Mitglieder.',
+          'Die Streitschlichtung ist blockiert (USA blockieren Berufungsinstanz), Doha-Runde gescheitert, Protektionismus nimmt zu.',
+          'Sie verbietet alle Zölle.',
+          'Sie wird von der EU geleitet.'
+        ],
+        correct: 1,
+        explanation: 'Seit 2019 blockieren die USA die Besetzung der Berufungsinstanz; die Doha-Runde brachte keine neue Liberalisierung; Protektionismus und neue Themen (Digitales, Klima) belasten die Organisation.'
+      },
+      {
+        question: 'Ein Erziehungszoll dient typischerweise …',
+        options: [
+          'nur der Staatseinnahme.',
+          'dem Aufbau junger Industrien („infant industry“) durch zeitweiligen Schutz.',
+          'der dauerhaften Abschottung aller Branchen.',
+          'der Subventionierung von Exporteuren.'
+        ],
+        correct: 1,
+        explanation: 'Erziehungszoll: zeitweiliger Schutz junger heimischer Industrien, bis sie international wettbewerbsfähig sind („infant industry“-Argument).'
+      }
+    ];
+
+    function QuizSection() {
+      const [answers, setAnswers] = useState({});
+      const [submitted, setSubmitted] = useState(false);
+
+      const handleSelect = (qIndex, optionIndex) => {
+        if (submitted) return;
+        setAnswers(prev => ({ ...prev, [qIndex]: optionIndex }));
+      };
+
+      const handleSubmit = () => setSubmitted(true);
+
+      const score = QUIZ_QUESTIONS.filter((q, i) => answers[i] === q.correct).length;
+      const total = QUIZ_QUESTIONS.length;
+
+      return (
+        <div className="content">
+          <h2 className="section-title">Quiz: Weltwirtschaftliche Verflechtungen</h2>
+          <p className="section-intro">
+            8 Multiple-Choice-Fragen zum Thema. Wähle je eine Antwort – nach dem Absenden siehst du Erklärungen und deinen Punktestand.
+          </p>
+          {QUIZ_QUESTIONS.map((q, qIndex) => (
+            <div key={qIndex} className="quiz-card">
+              <h3>Frage {qIndex + 1}: {q.question}</h3>
+              <div className="quiz-options">
+                {q.options.map((opt, oIndex) => {
+                  let cls = 'quiz-option';
+                  if (submitted) {
+                    cls += ' disabled';
+                    if (oIndex === q.correct) cls += ' correct';
+                    else if (answers[qIndex] === oIndex && oIndex !== q.correct) cls += ' wrong';
+                  }
+                  return (
+                    <button
+                      key={oIndex}
+                      className={cls + (answers[qIndex] === oIndex ? ' active' : '')}
+                      onClick={() => handleSelect(qIndex, oIndex)}
+                      style={answers[qIndex] === oIndex && !submitted ? { borderColor: 'var(--primary)' } : {}}
+                    >
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+              {submitted && (
+                <div className="quiz-explanation">
+                  <strong>Erklärung:</strong> {q.explanation}
+                </div>
+              )}
+            </div>
+          ))}
+          {!submitted ? (
+            <button
+              onClick={handleSubmit}
+              style={{
+                display: 'block',
+                margin: '1rem auto',
+                padding: '0.75rem 2rem',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'white',
+                background: 'var(--primary)',
+                border: 'none',
+                borderRadius: 10,
+                cursor: 'pointer'
+              }}
+            >
+              Auswertung anzeigen
+            </button>
+          ) : (
+            <div className="quiz-score">
+              <div className="number">{score} / {total}</div>
+              <div className="label">Punkte</div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function App() {
+      const [activeTab, setActiveTab] = useState('global');
+
+      const components = {
+        GlobalSection,
+        TheoriesSection,
+        LeitbilderSection,
+        HemmnisseSection,
+        RegimeSection,
+        QuizSection
+      };
+
+      const ActiveComponent = components[TABS.find(t => t.id === activeTab)?.component];
+
+      return (
+        <div className="app">
+          <header className="header">
+            <h1>Weltwirtschaftliche Verflechtungen</h1>
+            <p>13.2 Chancen und Risiken · Abitur Politik-Wirtschaft (Niedersachsen)</p>
+          </header>
+          <nav className="nav">
+            {TABS.map(tab => (
+              <button
+                key={tab.id}
+                className={'nav-btn' + (activeTab === tab.id ? ' active' : '')}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+          {ActiveComponent && <ActiveComponent />}
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
