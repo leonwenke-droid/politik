@@ -1020,14 +1020,16 @@
     .back-link-wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; text-align: center; }
     .course-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
-      max-width: 960px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem 2rem;
     }
     .course-card {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       background: var(--surface);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
@@ -1045,14 +1047,14 @@
     }
     .course-card .course-badge { font-size: 0.7rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; }
     .course-card .course-title { font-weight: 700; font-size: 1.1rem; color: var(--text); margin: 0 0 0.35rem 0; }
-    .course-card .course-desc { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.4; }
-    .course-card .course-illustration { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+    .course-card .course-desc { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.4; flex: 1; }
+    .course-card .course-illustration { font-size: 2rem; height: 2.75rem; display: flex; align-items: center; margin-bottom: 0.75rem; white-space: nowrap; letter-spacing: 0.15em; }
+    .course-card .course-progress { margin-top: auto; width: 100%; }
     .course-card[data-color="blue"] { border-top: 4px solid #1a73e8; }
     .course-card[data-color="green"] { border-top: 4px solid #34a853; }
     .course-card[data-color="orange"] { border-top: 4px solid #ea8600; }
     .course-card[data-color="purple"] { border-top: 4px solid #8e24aa; }
-    .course-card .course-progress { margin-top: 0.75rem; }
-    .course-card .course-progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .course-card .course-progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 0.75rem; }
     .course-card .course-progress-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
     .course-card[data-color="blue"] .course-progress-fill { background: #1a73e8; }
     .course-card[data-color="green"] .course-progress-fill { background: #34a853; }
@@ -1141,6 +1143,200 @@
     .chatbot-input-wrap button:disabled { opacity: 0.7; cursor: not-allowed; }
     .chatbot-msg.loading { font-style: italic; color: var(--text-muted); }
 
+    /* ===== LERNPLAKAT 13.2 ===== */
+    .lernplakat {
+      width: 100%; max-width: 1100px; margin: 0 auto;
+      padding: 0 0.5rem 2rem;
+    }
+    .lernplakat-hero {
+      text-align: center; padding: 2.5rem 1.5rem 2rem;
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      border-radius: 24px; margin-bottom: 1.5rem;
+      position: relative; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    }
+    .lernplakat-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(52,211,153,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .lernplakat-hero-inner { position: relative; z-index: 1; }
+    .lernplakat-hero .lp-badge {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: #93c5fd; background: rgba(59,130,246,0.15);
+      padding: 0.3rem 0.85rem; border-radius: 20px; margin-bottom: 1rem;
+      border: 1px solid rgba(59,130,246,0.25);
+    }
+    .lernplakat-hero h2 {
+      font-family: 'DM Sans', sans-serif; font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800; color: white; margin: 0 0 0.5rem; letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .lernplakat-hero h2 span {
+      background: linear-gradient(135deg, #60a5fa, #34d399);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .lernplakat-hero .lp-sub {
+      color: rgba(255,255,255,0.7); font-size: 1rem; margin: 0;
+      max-width: 52ch; margin-left: auto; margin-right: auto; line-height: 1.55;
+    }
+    .lernplakat-hero .lp-stats {
+      display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;
+    }
+    .lernplakat-hero .lp-stat {
+      text-align: center;
+    }
+    .lernplakat-hero .lp-stat-num {
+      font-size: 1.75rem; font-weight: 800; display: block;
+      background: linear-gradient(135deg, #60a5fa, #34d399);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .lernplakat-hero .lp-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+    .lp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .lp-tile {
+      background: var(--surface); border-radius: 20px;
+      padding: 1.5rem; position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      transition: box-shadow 0.3s, transform 0.3s;
+      overflow: hidden;
+    }
+    .lp-tile:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .lp-tile::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      border-radius: 20px 20px 0 0;
+    }
+    .lp-tile[data-color="blue"]::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .lp-tile[data-color="green"]::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .lp-tile[data-color="orange"]::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .lp-tile[data-color="red"]::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .lp-tile[data-color="purple"]::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .lp-tile-header { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1rem; }
+    .lp-tile-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .lp-tile[data-color="blue"] .lp-tile-icon { background: rgba(59,130,246,0.12); }
+    .lp-tile[data-color="green"] .lp-tile-icon { background: rgba(16,185,129,0.12); }
+    .lp-tile[data-color="orange"] .lp-tile-icon { background: rgba(245,158,11,0.12); }
+    .lp-tile[data-color="red"] .lp-tile-icon { background: rgba(239,68,68,0.12); }
+    .lp-tile[data-color="purple"] .lp-tile-icon { background: rgba(139,92,246,0.12); }
+    .lp-tile-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 0; line-height: 1.25; }
+    .lp-tile-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .lp-tile-body { font-size: 0.88rem; line-height: 1.6; color: var(--text); }
+    .lp-tile-body ul { margin: 0.3rem 0 0.5rem 1.1rem; padding: 0; }
+    .lp-tile-body li { margin-bottom: 0.25rem; }
+    .lp-tile-body strong { color: var(--text); }
+    .lp-tile-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      padding: 0.15rem 0.5rem; border-radius: 6px; margin-right: 0.3rem; margin-bottom: 0.3rem;
+    }
+    .lp-tile[data-color="blue"] .lp-tile-tag { background: rgba(59,130,246,0.1); color: #2563eb; }
+    .lp-tile[data-color="green"] .lp-tile-tag { background: rgba(16,185,129,0.1); color: #059669; }
+    .lp-tile[data-color="orange"] .lp-tile-tag { background: rgba(245,158,11,0.1); color: #d97706; }
+    .lp-tile[data-color="red"] .lp-tile-tag { background: rgba(239,68,68,0.1); color: #dc2626; }
+    .lp-tile[data-color="purple"] .lp-tile-tag { background: rgba(139,92,246,0.1); color: #7c3aed; }
+    .lp-tile-persons {
+      margin-top: 0.75rem; padding-top: 0.65rem;
+      border-top: 1px solid var(--border);
+    }
+    .lp-tile-persons .lp-person {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.82rem; margin-bottom: 0.35rem;
+    }
+    .lp-person-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; flex-shrink: 0; font-weight: 700; color: white;
+    }
+    .lp-tile[data-color="blue"] .lp-person-avatar { background: #3b82f6; }
+    .lp-tile[data-color="green"] .lp-person-avatar { background: #10b981; }
+    .lp-tile[data-color="orange"] .lp-person-avatar { background: #f59e0b; }
+    .lp-tile[data-color="red"] .lp-person-avatar { background: #ef4444; }
+    .lp-tile[data-color="purple"] .lp-person-avatar { background: #8b5cf6; }
+    .lp-person-info strong { display: block; font-size: 0.82rem; color: var(--text); }
+    .lp-person-info span { font-size: 0.78rem; color: var(--text-muted); }
+    .lp-tile.full-width { grid-column: 1 / -1; }
+    .lp-connections {
+      grid-column: 1 / -1; padding: 1.25rem;
+      background: linear-gradient(135deg, rgba(59,130,246,0.04), rgba(16,185,129,0.04));
+      border-radius: 16px; border: 1px dashed var(--border);
+    }
+    .lp-connections h4 { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--primary); text-align: center; }
+    .lp-conn-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .lp-conn-item {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.8rem; padding: 0.35rem 0.75rem;
+      background: var(--surface); border-radius: 20px;
+      border: 1px solid var(--border); color: var(--text);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .lp-conn-item .arrow { color: var(--primary); font-weight: 700; }
+    .lp-summary {
+      grid-column: 1 / -1; padding: 1.5rem;
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      border-radius: 20px; color: white;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    }
+    .lp-summary h4 {
+      margin: 0 0 1rem; font-size: 1.1rem; text-align: center;
+      background: linear-gradient(135deg, #60a5fa, #34d399);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .lp-summary-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .lp-summary-item {
+      padding: 0.75rem; border-radius: 12px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+    }
+    .lp-summary-item strong { display: block; font-size: 0.82rem; color: #93c5fd; margin-bottom: 0.2rem; }
+    .lp-summary-item span { font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.45; }
+    .lp-wirkungskette {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.35rem; flex-wrap: wrap; margin: 0.5rem 0;
+    }
+    .lp-wk-step {
+      padding: 0.4rem 0.7rem; border-radius: 10px; font-size: 0.78rem;
+      font-weight: 600; background: rgba(239,68,68,0.08); color: #dc2626;
+      border: 1px solid rgba(239,68,68,0.15);
+    }
+    .lp-wk-arrow { color: var(--text-muted); font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .lp-grid { grid-template-columns: 1fr; }
+      .lp-tile.full-width { grid-column: 1; }
+      .lp-connections { grid-column: 1; }
+      .lp-summary { grid-column: 1; }
+      .lernplakat-hero .lp-stats { gap: 1.25rem; }
+      .lp-summary-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .lernplakat { padding: 0 0.25rem 1.5rem; }
+      .lernplakat-hero { padding: 1.5rem 1rem; border-radius: 16px; margin-bottom: 1rem; }
+      .lernplakat-hero h2 { font-size: 1.3rem; }
+      .lernplakat-hero .lp-sub { font-size: 0.88rem; }
+      .lp-grid { gap: 0.75rem; }
+      .lp-tile { padding: 1.1rem; border-radius: 16px; }
+      .lp-tile-icon { width: 38px; height: 38px; font-size: 1.2rem; }
+      .lp-tile-title { font-size: 1rem; }
+      .lp-tile-body { font-size: 0.84rem; }
+      .lp-conn-item { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+      .lp-summary { padding: 1.1rem; border-radius: 16px; }
+      .lp-summary-grid { grid-template-columns: 1fr; }
+      .lp-summary-item { padding: 0.6rem; }
+      .lp-wk-step { font-size: 0.72rem; padding: 0.3rem 0.55rem; }
+    }
+
     /* ===== MOBILE RESPONSIVE ===== */
 
     /* Tablet (max 768px) */
@@ -1150,7 +1346,8 @@
       .header .tagline { font-size: 0.82rem; }
       .content { padding: 1.75rem 1rem 2.5rem; }
       .content-block { padding: 1rem 1.1rem; }
-      .course-grid, .module-grid { padding: 0 1rem 1.5rem; gap: 0.75rem; }
+      .course-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1rem 1.5rem; gap: 0.75rem; }
+      .module-grid { padding: 0 1rem 1.5rem; gap: 0.75rem; }
       .course-card { padding: 1.25rem; }
       .module-card { padding: 1rem; }
       .cards-grid { gap: 1rem; }
@@ -1206,12 +1403,14 @@
       .course-grid {
         grid-template-columns: 1fr;
         padding: 0 0.75rem 1.5rem;
-        gap: 0.65rem;
+        gap: 0.85rem;
       }
-      .course-card { padding: 1rem; }
-      .course-card .course-title { font-size: 1rem; }
-      .course-card .course-desc { font-size: 0.85rem; }
-      .course-card .course-illustration { font-size: 2rem; margin-bottom: 0.5rem; }
+      .course-card {
+        padding: 1.35rem 1.25rem;
+      }
+      .course-card .course-illustration { font-size: 2.25rem; margin-bottom: 0.65rem; }
+      .course-card .course-title { font-size: 1.1rem; }
+      .course-card .course-desc { font-size: 0.9rem; line-height: 1.5; }
 
       .module-grid {
         grid-template-columns: 1fr;
@@ -1506,6 +1705,7 @@
           { id: 'hemmnisse', label: '🚧 Handelshemmnisse', shortLabel: 'Handelshemmnisse', desc: 'Zölle, Quoten, Wirkungskette', icon: '🚧', component: 'HemmnisseSection' },
           { id: 'regime', label: '🤝 Handelsregime', shortLabel: 'Handelsregime', desc: 'WTO, Handelsabkommen', icon: '🤝', component: 'RegimeSection' },
           { id: 'flashcards', label: '📇 Karteikarten', shortLabel: 'Karteikarten', desc: 'Begriffe lernen und wiederholen', icon: '📇', component: 'FlashcardsSection' },
+          { id: 'lernplakat', label: '🗺️ Lernplakat', shortLabel: 'Lernplakat', desc: 'Alle Themen auf einen Blick', icon: '🗺️', component: 'Lernplakat132' },
           { id: 'quiz', label: '🎯 Quiz', shortLabel: 'Quiz 13.2', desc: 'Teste dein Wissen zu 13.2', icon: '🎯', component: 'QuizSection', quizData: 'QUIZ_QUESTIONS', quizLabel: '13.2 – Weltwirtschaftliche Verflechtungen' },
         ],
       },
@@ -1525,7 +1725,7 @@
         return Math.round((done / course.modules.length) * 100);
       };
       return (
-        <div className="content" style={{ paddingTop: 0 }}>
+        <div className="content" style={{ paddingTop: 0, maxWidth: '1200px' }}>
           <div className="hero">
             <div className="experiment-badge">Lern deinen Weg</div>
             <h2>Abitur Politik-Wirtschaft · Niedersachsen</h2>
@@ -3623,6 +3823,268 @@
       }
     ];
 
+    function Lernplakat132({ hasNext, nextLabel, onNext, onNavigateToModule }) {
+      const [expanded, setExpanded] = useState(null);
+      const toggle = (id) => setExpanded(prev => prev === id ? null : id);
+      return (
+        <div className="content" style={{ maxWidth: '1100px' }}>
+          <div className="lernplakat">
+            <div className="lernplakat-hero">
+              <div className="lernplakat-hero-inner">
+                <div className="lp-badge">Kerncurriculum 13.2 · Niedersachsen · Abitur</div>
+                <h2>Weltwirtschaftliche<br/><span>Verflechtungen</span></h2>
+                <p className="lp-sub">
+                  Alle prüfungsrelevanten Themen auf einen Blick – Globalisierung, Handelstheorien, Leitbilder, Hemmnisse und das internationale Handelsregime.
+                </p>
+                <div className="lp-stats">
+                  <div className="lp-stat"><span className="lp-stat-num">5</span><span className="lp-stat-label">Themenfelder</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">4</span><span className="lp-stat-label">WTO-Prinzipien</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">3</span><span className="lp-stat-label">Handelstheorien</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">2</span><span className="lp-stat-label">Leitbilder</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lp-grid">
+
+              {/* 1 – Globalisierung */}
+              <div className="lp-tile" data-color="blue">
+                <div className="lp-tile-header">
+                  <div className="lp-tile-icon">🌍</div>
+                  <div>
+                    <div className="lp-tile-title">Ökonomische Globalisierung</div>
+                    <div className="lp-tile-subtitle">Merkmale und Indikatoren</div>
+                  </div>
+                </div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}>
+                    <span className="lp-tile-tag">Welthandel</span>
+                    <span className="lp-tile-tag">FDI</span>
+                    <span className="lp-tile-tag">MNU</span>
+                    <span className="lp-tile-tag">Handelsströme</span>
+                  </div>
+                  <ul>
+                    <li><strong>Welthandelsvolumen</strong> – wächst stärker als die Weltwirtschaft</li>
+                    <li><strong>Welthandelsströme</strong> – EU↔China, EU↔USA, Asien↔Europa</li>
+                    <li><strong>FDI</strong> (Foreign Direct Investment) – langfristige Auslandsinvestition, mind. 10 % Beteiligung</li>
+                    <li><strong>Multinationale Konzerne</strong> – Produktion in mehreren Ländern, prägen Handelsströme</li>
+                  </ul>
+                  {expanded === 'glob' && (
+                    <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(59,130,246,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}>
+                      <strong>Aktualität 2026:</strong> Pandemie und Lieferkettenkrisen (2020–22) sowie geopolitische Spannungen (USA–China, Ukraine-Krieg) haben Abhängigkeiten und Verflechtungen stärker sichtbar gemacht. FDI und Welthandel bleiben zentrale Indikatoren.
+                    </div>
+                  )}
+                  <button onClick={() => toggle('glob')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#2563eb', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>
+                    {expanded === 'glob' ? '▲ weniger' : '▼ Aktualität 2026'}
+                  </button>
+                </div>
+              </div>
+
+              {/* 2 – Erklärungsansätze */}
+              <div className="lp-tile" data-color="green">
+                <div className="lp-tile-header">
+                  <div className="lp-tile-icon">📊</div>
+                  <div>
+                    <div className="lp-tile-title">Erklärungsansätze</div>
+                    <div className="lp-tile-subtitle">Warum handeln Länder?</div>
+                  </div>
+                </div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}>
+                    <span className="lp-tile-tag">Smith</span>
+                    <span className="lp-tile-tag">Ricardo</span>
+                    <span className="lp-tile-tag">Intraindustriell</span>
+                  </div>
+                  <ul>
+                    <li><strong>Absolute Kostenvorteile</strong> (Smith) – Jedes Land produziert, was es am effizientesten kann</li>
+                    <li><strong>Komparative Kostenvorteile</strong> (Ricardo) – Entscheidend: Opportunitätskosten (relative Kosten), Handel lohnt auch ohne absolute Vorteile</li>
+                    <li><strong>Intraindustrieller Handel</strong> – Gleiche Branche, verschiedene Produkte (z. B. DE exportiert + importiert Autos)</li>
+                  </ul>
+                  {expanded === 'theo' && (
+                    <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(16,185,129,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}>
+                      <strong>Merke:</strong> Smith sagt: „Wer's am besten kann, macht's." Ricardo sagt: „Auch der Schlechtere soll sich spezialisieren – auf das, was relativ am wenigsten schlecht ist." Beide zeigen: Spezialisierung + Handel = Wohlstand für alle.
+                    </div>
+                  )}
+                  <button onClick={() => toggle('theo')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#059669', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>
+                    {expanded === 'theo' ? '▲ weniger' : '▼ Merkhilfe'}
+                  </button>
+                </div>
+                <div className="lp-tile-persons">
+                  <div className="lp-person"><div className="lp-person-avatar">AS</div><div className="lp-person-info"><strong>Adam Smith</strong><span>1723–1790 · Absolute Kostenvorteile</span></div></div>
+                  <div className="lp-person"><div className="lp-person-avatar">DR</div><div className="lp-person-info"><strong>David Ricardo</strong><span>1772–1823 · Komparative Kostenvorteile</span></div></div>
+                </div>
+              </div>
+
+              {/* 3 – Leitbilder */}
+              <div className="lp-tile" data-color="orange">
+                <div className="lp-tile-header">
+                  <div className="lp-tile-icon">⚖️</div>
+                  <div>
+                    <div className="lp-tile-title">Leitbilder</div>
+                    <div className="lp-tile-subtitle">Freihandel vs. Protektionismus</div>
+                  </div>
+                </div>
+                <div className="lp-tile-body">
+                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.5rem', marginBottom:'0.5rem'}}>
+                    <div style={{padding:'0.6rem', borderRadius:'10px', background:'rgba(16,185,129,0.06)', border:'1px solid rgba(16,185,129,0.12)'}}>
+                      <strong style={{fontSize:'0.82rem', color:'#059669', display:'block', marginBottom:'0.2rem'}}>Freihandel</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>+ Wohlstand, Effizienz, niedrige Preise<br/>− Arbeitsplatzverluste, Abhängigkeiten</span>
+                    </div>
+                    <div style={{padding:'0.6rem', borderRadius:'10px', background:'rgba(239,68,68,0.05)', border:'1px solid rgba(239,68,68,0.12)'}}>
+                      <strong style={{fontSize:'0.82rem', color:'#dc2626', display:'block', marginBottom:'0.2rem'}}>Protektionismus</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>+ Schutz von Jobs, infant industry<br/>− Höhere Preise, Handelskriege</span>
+                    </div>
+                  </div>
+                  {expanded === 'leit' && (
+                    <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(245,158,11,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}>
+                      <strong>Fallbeispiel EU-Mercosur:</strong> EU ↔ Brasilien, Argentinien, Uruguay, Paraguay. Pro: neue Märkte, niedrigere Zölle. Contra: Gefahr für EU-Landwirtschaft, Abholzung Regenwald, niedrige Arbeitsstandards. Zeigt Spannung zwischen Wirtschaft und Ökologie/Sozialem.
+                    </div>
+                  )}
+                  <button onClick={() => toggle('leit')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#d97706', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>
+                    {expanded === 'leit' ? '▲ weniger' : '▼ Fallbeispiel EU-Mercosur'}
+                  </button>
+                </div>
+              </div>
+
+              {/* 4 – Handelshemmnisse */}
+              <div className="lp-tile" data-color="red">
+                <div className="lp-tile-header">
+                  <div className="lp-tile-icon">🚧</div>
+                  <div>
+                    <div className="lp-tile-title">Handelshemmnisse</div>
+                    <div className="lp-tile-subtitle">Tarifär & nichttarifär</div>
+                  </div>
+                </div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}>
+                    <span className="lp-tile-tag">Zölle</span>
+                    <span className="lp-tile-tag">Quoten</span>
+                    <span className="lp-tile-tag">Normen</span>
+                    <span className="lp-tile-tag">Subventionen</span>
+                  </div>
+                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.5rem', marginBottom:'0.5rem'}}>
+                    <div style={{padding:'0.5rem', borderRadius:'8px', background:'rgba(239,68,68,0.04)', fontSize:'0.82rem'}}>
+                      <strong style={{display:'block', marginBottom:'0.15rem'}}>Tarifär (Zölle)</strong>
+                      Wertzoll, Mengenzoll<br/>Schutzzoll, Erziehungszoll, Finanzzoll
+                    </div>
+                    <div style={{padding:'0.5rem', borderRadius:'8px', background:'rgba(239,68,68,0.04)', fontSize:'0.82rem'}}>
+                      <strong style={{display:'block', marginBottom:'0.15rem'}}>Nichttarifär</strong>
+                      Importquoten, tech. Normen, Subventionen, Bürokratie
+                    </div>
+                  </div>
+                  <strong style={{fontSize:'0.82rem', display:'block', marginBottom:'0.25rem'}}>Wirkungskette:</strong>
+                  <div className="lp-wirkungskette">
+                    <span className="lp-wk-step">Zoll/Quote</span>
+                    <span className="lp-wk-arrow">→</span>
+                    <span className="lp-wk-step">Import teurer</span>
+                    <span className="lp-wk-arrow">→</span>
+                    <span className="lp-wk-step">Heimische profitieren</span>
+                    <span className="lp-wk-arrow">→</span>
+                    <span className="lp-wk-step">Konsumenten zahlen mehr</span>
+                  </div>
+                  {expanded === 'hemm' && (
+                    <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(239,68,68,0.05)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}>
+                      <strong>Trump-Zölle (Stand 2026):</strong> Massive Strafzölle auf chinesische Waren (25–50 %), Stahlzölle (25 %) auch gegen EU. Begründung: „America First", Schutz von Jobs. Folgen: Handelskrieg, Vergeltungszölle, höhere Preise.
+                    </div>
+                  )}
+                  <button onClick={() => toggle('hemm')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#dc2626', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>
+                    {expanded === 'hemm' ? '▲ weniger' : '▼ Trump-Zölle 2026'}
+                  </button>
+                </div>
+              </div>
+
+              {/* 5 – Handelsregime (volle Breite) */}
+              <div className="lp-tile full-width" data-color="purple">
+                <div className="lp-tile-header">
+                  <div className="lp-tile-icon">🤝</div>
+                  <div>
+                    <div className="lp-tile-title">Handelsregime & WTO</div>
+                    <div className="lp-tile-subtitle">Regelwerk des Welthandels</div>
+                  </div>
+                </div>
+                <div className="lp-tile-body">
+                  <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(150px, 1fr))', gap:'0.5rem', marginBottom:'0.65rem'}}>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(139,92,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>Meistbegünstigung</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>Gleiche Regeln für alle</span>
+                    </div>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(139,92,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>Inländerbehandlung</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>In- = Ausland</span>
+                    </div>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(139,92,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>Reziprozität</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>Gegenseitigkeit</span>
+                    </div>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(139,92,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>Transparenz</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>Offene Regeln</span>
+                    </div>
+                  </div>
+                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'0.5rem', marginBottom:'0.5rem'}}>
+                    <div style={{padding:'0.5rem', borderRadius:'8px', background:'rgba(139,92,246,0.04)', fontSize:'0.82rem', textAlign:'center'}}>
+                      <strong style={{display:'block'}}>Multilateral</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>WTO (164 Mitglieder)</span>
+                    </div>
+                    <div style={{padding:'0.5rem', borderRadius:'8px', background:'rgba(139,92,246,0.04)', fontSize:'0.82rem', textAlign:'center'}}>
+                      <strong style={{display:'block'}}>Regional</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>EU, ASEAN, Mercosur</span>
+                    </div>
+                    <div style={{padding:'0.5rem', borderRadius:'8px', background:'rgba(139,92,246,0.04)', fontSize:'0.82rem', textAlign:'center'}}>
+                      <strong style={{display:'block'}}>Bilateral</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>CETA, EU-Japan</span>
+                    </div>
+                  </div>
+                  {expanded === 'wto' && (
+                    <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(139,92,246,0.05)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}>
+                      <strong>WTO-Krise (Stand 2026):</strong> USA blockieren seit 2019 die Berufungsinstanz (Appellate Body) – Streitschlichtung eingeschränkt. Doha-Runde gescheitert. Zunehmender Protektionismus. Neue Themen (Digitales, Klima) kaum geregelt. Generaldirektorin: Ngozi Okonjo-Iweala (seit 2021).
+                    </div>
+                  )}
+                  <button onClick={() => toggle('wto')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#7c3aed', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>
+                    {expanded === 'wto' ? '▲ weniger' : '▼ WTO-Krise & Details'}
+                  </button>
+                </div>
+                <div className="lp-tile-persons">
+                  <div className="lp-person"><div className="lp-person-avatar">NO</div><div className="lp-person-info"><strong>Ngozi Okonjo-Iweala</strong><span>WTO-Generaldirektorin seit 2021</span></div></div>
+                  <div className="lp-person"><div className="lp-person-avatar">UL</div><div className="lp-person-info"><strong>Ursula von der Leyen</strong><span>EU-Kommissionspräsidentin, EU-Handelspolitik</span></div></div>
+                </div>
+              </div>
+
+              {/* Verbindungen */}
+              <div className="lp-connections">
+                <h4>Zusammenhänge erkennen – So hängt alles zusammen</h4>
+                <div className="lp-conn-list">
+                  <div className="lp-conn-item"><span>Globalisierung</span><span className="arrow">→</span><span>erfordert Erklärung</span><span className="arrow">→</span><span>Smith / Ricardo</span></div>
+                  <div className="lp-conn-item"><span>Freihandel</span><span className="arrow">↔</span><span>Protektionismus</span></div>
+                  <div className="lp-conn-item"><span>Protektionismus</span><span className="arrow">→</span><span>setzt Hemmnisse ein</span><span className="arrow">→</span><span>Zölle, Quoten</span></div>
+                  <div className="lp-conn-item"><span>WTO</span><span className="arrow">→</span><span>regelt Handel</span><span className="arrow">→</span><span>baut Hemmnisse ab</span></div>
+                  <div className="lp-conn-item"><span>Ricardo</span><span className="arrow">→</span><span>begründet Freihandel</span></div>
+                  <div className="lp-conn-item"><span>FDI + MNU</span><span className="arrow">→</span><span>vertiefen Globalisierung</span></div>
+                </div>
+              </div>
+
+              {/* Zusammenfassung */}
+              <div className="lp-summary">
+                <h4>Schlüsselbegriffe für die Prüfung</h4>
+                <div className="lp-summary-grid">
+                  <div className="lp-summary-item"><strong>Globalisierung</strong><span>Zunehmende weltweite Verflechtung in Wirtschaft, Politik, Kultur</span></div>
+                  <div className="lp-summary-item"><strong>FDI</strong><span>Langfristige Auslandsinvestition mit Kontrolle (mind. 10 %)</span></div>
+                  <div className="lp-summary-item"><strong>Opportunitätskosten</strong><span>Verzicht auf die nächstbeste Alternative</span></div>
+                  <div className="lp-summary-item"><strong>Komparative Kosten</strong><span>Spezialisierung auf Güter mit geringsten Opportunitätskosten</span></div>
+                  <div className="lp-summary-item"><strong>Erziehungszoll</strong><span>Zeitweiliger Schutz junger Industrien (infant industry)</span></div>
+                  <div className="lp-summary-item"><strong>Meistbegünstigung</strong><span>Handelserleichterungen gelten für alle WTO-Mitglieder gleich</span></div>
+                  <div className="lp-summary-item"><strong>Inländerbehandlung</strong><span>Gleichbehandlung inländischer und ausländischer Waren</span></div>
+                  <div className="lp-summary-item"><strong>CETA</strong><span>EU-Kanada Freihandelsabkommen (seit 2017 vorläufig)</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+        </div>
+      );
+    }
+
     function QuizSection({ onNavigateToModule, hasNext, nextLabel, onNext, quizData, quizLabel }) {
       const allQuestions = quizData || QUIZ_QUESTIONS;
       const label = quizLabel || '13.2';
@@ -3877,7 +4339,8 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
 
     const SECTION_COMPONENTS = {
       GlobalSection, TheoriesSection, LeitbilderSection, HemmnisseSection,
-      RegimeSection, FlashcardsSection, QuizSection, CurriculumOutlineSection, FullContentSection
+      RegimeSection, FlashcardsSection, QuizSection, CurriculumOutlineSection, FullContentSection,
+      Lernplakat132
     };
 
     function App() {
