@@ -1441,6 +1441,23 @@
       justify-content: space-between;
       gap: 0.5rem;
     }
+    .chatbot-close-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 0;
+    }
+    .chatbot-close-btn:hover { background: rgba(255,255,255,0.35); }
     .chatbot-api-btn {
       background: rgba(255,255,255,0.2);
       border: none;
@@ -2265,7 +2282,8 @@
       /* Footer */
       .app-footer { padding: 1rem 0.75rem; font-size: 0.78rem; }
 
-      /* Chatbot – fullscreen-ähnlich auf Handy */
+      /* Chatbot – fullscreen-ähnlich auf Handy: Symbol ausblenden wenn Chat offen, Schließen nur per X im Header */
+      .chatbot-toggle.chatbot-toggle-open { display: none !important; }
       .chatbot-toggle {
         bottom: 1rem;
         right: 1rem;
@@ -6005,10 +6023,13 @@ Grenzen: Beantworte ausschließlich Fragen zu Politik-Wirtschaft, Abitur KC Nied
       };
       return (
         <>
-          <button type="button" className="chatbot-toggle" onClick={() => setOpen(o => !o)} aria-label="Lern-Bot öffnen">💬</button>
+          <button type="button" className={'chatbot-toggle' + (open ? ' chatbot-toggle-open' : '')} onClick={() => setOpen(o => !o)} aria-label="Lern-Bot öffnen">💬</button>
           {open && (
             <div className="chatbot-panel">
-              <div className="chatbot-panel-header">Abitur PoWi – Verständnisfragen</div>
+              <div className="chatbot-panel-header">
+                <span>Abitur PoWi – Verständnisfragen</span>
+                <button type="button" className="chatbot-close-btn" onClick={() => setOpen(false)} aria-label="Chat schließen">×</button>
+              </div>
               <div className="chatbot-messages">
                 {messages.map((msg, i) => (
                   <div key={i} className={'chatbot-msg ' + msg.role + (msg.loading ? ' loading' : '')}>{msg.text}</div>
