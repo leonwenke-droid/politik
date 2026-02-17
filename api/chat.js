@@ -1,12 +1,7 @@
 /**
  * Chat-Backend für die PoWi-Lernapp (Vercel Serverless).
- * API-Key nur über Umgebungsvariable – nie im Quellcode oder Frontend.
- *
- * Vercel: Nach Deploy im Dashboard → Settings → Environment Variables
- *         OPENAI_API_KEY anlegen, Key eintragen, Redeploy ausführen.
- * Lokal:  .env aus .env.example anlegen, OPENAI_API_KEY=sk-... eintragen,
- *         z. B. mit "npx vercel dev" starten.
- * Dann in index.html CHATBOT_API_URL auf die Backend-URL setzen.
+ * API-Key nur in Vercel: Dashboard → Settings → Environment Variables → OPENAI_API_KEY setzen, danach Redeploy.
+ * In index.html CHATBOT_API_URL auf die Vercel-API-URL setzen (z. B. https://dein-projekt.vercel.app/api/chat).
  * Siehe CHAT-SETUP.md für die vollständige Anleitung.
  */
 
