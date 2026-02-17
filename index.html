@@ -27,6 +27,135 @@
       --shadow: 0 1px 3px rgba(0,0,0,0.08);
       --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
     }
+
+    [data-theme="dark"] {
+      --primary: #60a5fa;
+      --primary-light: #93c5fd;
+      --primary-dark: #3b82f6;
+      --accent: #34d399;
+      --accent-bright: #6ee7b7;
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] .header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #059669 100%);
+    }
+    [data-theme="dark"] .quiz-option.correct { border-color: #34d399; background: rgba(52,211,153,0.15); }
+    [data-theme="dark"] .quiz-option.wrong { border-color: #f87171; background: rgba(248,113,113,0.15); }
+    [data-theme="dark"] .glossary-table th { background: #334155; }
+    [data-theme="dark"] .compare-table th { background: #334155; }
+    [data-theme="dark"] .aktualitaet-box { background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(52,211,153,0.1) 100%); }
+    [data-theme="dark"] .card { border-color: #334155; }
+    [data-theme="dark"] .module-card { border-color: #334155; }
+    [data-theme="dark"] .course-card { border-color: #334155; }
+    [data-theme="dark"] .lernplakat-hero { background: linear-gradient(145deg, #0a0f1a 0%, #1a1f2e 50%, #0a0f1a 100%); }
+    .theme-toggle {
+      position: fixed; top: 1rem; right: 1rem; z-index: 1001;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.2);
+      color: white; font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .theme-toggle:hover { transform: scale(1.1); background: rgba(0,0,0,0.4); }
+    [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); }
+
+    .site-breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1rem;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-breadcrumb .bc-link {
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+    .site-breadcrumb .bc-link:hover {
+      background: rgba(26,115,232,0.08);
+    }
+    .site-breadcrumb .bc-sep {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+    .site-breadcrumb .bc-current {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .begriffe-modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.55); z-index: 1100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem; animation: fadeIn 0.2s ease-out;
+    }
+    .begriffe-modal {
+      background: var(--surface); border-radius: 18px;
+      max-width: 620px; width: 100%; max-height: 85vh; overflow-y: auto;
+      padding: 2rem 1.75rem 1.5rem; position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25); border: 1px solid var(--border);
+    }
+    .begriffe-modal-close {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      width: 36px; height: 36px; border-radius: 50%; border: none;
+      background: rgba(0,0,0,0.06); color: var(--text-muted);
+      font-size: 1.2rem; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.15s; font-family: inherit;
+    }
+    .begriffe-modal-close:hover { background: rgba(0,0,0,0.12); }
+    [data-theme="dark"] .begriffe-modal-close { background: rgba(255,255,255,0.08); }
+    [data-theme="dark"] .begriffe-modal-close:hover { background: rgba(255,255,255,0.15); }
+    .begriffe-modal h3 { font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 0.35rem; padding-right: 2rem; }
+    .begriffe-modal .bm-kurz { font-size: 0.92rem; color: var(--text-muted); margin: 0 0 1.25rem; line-height: 1.5; }
+    .begriffe-modal .bm-vis { margin-bottom: 1.25rem; }
+    .begriffe-modal .bm-tipp {
+      padding: 0.75rem 1rem; border-radius: 10px;
+      background: rgba(245,158,11,0.08); border-left: 3px solid #f59e0b;
+      font-size: 0.85rem; line-height: 1.5; color: var(--text);
+    }
+    .begriffe-modal .bm-tipp strong { color: #d97706; }
+    .glossar-vis-link {
+      font-family: inherit; font-size: inherit; font-weight: 600;
+      color: var(--primary); background: none; border: none; cursor: pointer;
+      padding: 0; text-decoration: underline; text-decoration-style: dotted;
+      text-underline-offset: 2px; transition: color 0.15s;
+    }
+    .glossar-vis-link:hover { color: var(--primary-dark, #1a56db); }
+    .glossar-vis-link .vis-hint {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: rgba(26,115,232,0.1); color: var(--primary);
+      font-size: 0.6rem; font-weight: 700; margin-left: 0.3rem;
+      vertical-align: middle; flex-shrink: 0;
+    }
+    @media (max-width: 480px) {
+      .begriffe-modal { padding: 1.5rem 1.25rem 1.25rem; border-radius: 14px; }
+      .begriffe-modal h3 { font-size: 1.1rem; }
+    }
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -114,35 +243,7 @@
     }
     .progress-step.active .dot { background: var(--primary); }
     .progress-step.done .dot { background: var(--accent); }
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0.5rem 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.25rem;
-    }
-    .nav-btn {
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.5rem 0.85rem;
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-radius: 8px;
-      transition: color 0.2s, background 0.2s;
-    }
-    .nav-btn:hover { color: var(--primary); background: var(--bg); }
-    .nav-btn.active {
-      color: var(--primary);
-      background: rgba(26,115,232,0.1);
-    }
+
     .content {
       max-width: 960px;
       width: 100%;
@@ -641,20 +742,6 @@
       transform: scale(1.08);
       box-shadow: var(--shadow-hover);
     }
-    .magic-hexagon-detail {
-      margin-top: 1.5rem;
-      padding: 1.25rem 1.5rem;
-      background: var(--surface);
-      border-radius: var(--radius);
-      border-left: 4px solid var(--primary);
-      box-shadow: var(--shadow);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      width: 100%;
-      max-width: 420px;
-    }
-    .magic-hexagon-detail h4 { margin: 0 0 0.5rem 0; color: var(--primary); font-size: 1rem; }
-    .magic-hexagon-detail p { margin: 0; }
     .sachbox {
       background: var(--surface);
       border-radius: var(--radius);
@@ -879,8 +966,71 @@
     }
     .mobile-detail-relation strong { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.3rem; }
     .mobile-detail-relation span { font-size: 0.85rem; line-height: 1.5; color: var(--text); }
+    /* Magisches Sechseck – Stil wie Mobilé */
+    .sechseck-wrap {
+      width: 100%; max-width: 720px; margin: 1.5rem auto;
+      background: linear-gradient(145deg, #f0f4ff 0%, #f8f6ff 40%, #f0fdf4 100%);
+      border-radius: 20px; border: none;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+      padding: 1.5rem; overflow: visible;
+    }
+    .sechseck-wrap h4 { margin: 0 0 0.15rem 0; font-size: 1.15rem; font-weight: 700; text-align: center;
+      background: linear-gradient(135deg, #1a73e8, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .sechseck-wrap .sechseck-hint { font-size: 0.82rem; color: var(--text-muted); text-align: center; margin-bottom: 0.5rem; }
+    .sechseck-wrap .sechseck-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.9rem; margin-bottom: 0.75rem; align-items: center; }
+    .sechseck-wrap .sechseck-legend-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+    .sechseck-wrap .sechseck-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .sechseck-canvas { position: relative; width: 100%; max-width: 620px; margin: 0 auto; }
+    .sechseck-canvas svg { display: block; width: 100%; height: auto; }
+    .magic-hexagon-detail {
+      margin-top: 1rem; padding: 1.25rem; border-radius: 16px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      animation: fadeIn 0.3s ease-out;
+      font-size: 0.95rem; line-height: 1.5; width: 100%; max-width: 420px; margin-left: auto; margin-right: auto;
+    }
+    .magic-hexagon-detail h4 { margin: 0 0 0.5rem 0; color: var(--primary); font-size: 1rem; }
+    .magic-hexagon-detail p { margin: 0; }
+    .magic-hexagon-detail-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .sechseck-konflikt-btn {
+      padding: 0.4rem 0.75rem; font-size: 0.78rem; font-weight: 600; border-radius: 10px;
+      border: 1px solid rgba(239,68,68,0.4); background: rgba(239,68,68,0.08); color: #dc2626;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    }
+    .sechseck-konflikt-btn:hover { background: rgba(239,68,68,0.14); border-color: rgba(239,68,68,0.6); }
+    .sechseck-canvas svg .sechseck-node { cursor: pointer; }
+    .sechseck-canvas svg .sechseck-node-bg { transition: fill 0.25s, r 0.25s; }
+    .sechseck-canvas svg .sechseck-node-border { fill: none; stroke-linecap: round; transition: stroke-width 0.25s, r 0.25s; }
+    .sechseck-canvas svg .sechseck-node:hover .sechseck-node-border { stroke-width: 2.5; }
+    .sechseck-canvas svg .sechseck-node.active .sechseck-node-border { stroke-width: 3; }
+    .sechseck-canvas svg .sechseck-node-icon { font-size: 20px; pointer-events: none; }
+    .sechseck-canvas svg .sechseck-node-label { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 8px; fill: #1e293b; pointer-events: none; }
+    .sechseck-canvas svg .sechseck-node.active .sechseck-node-label { fill: #fff; }
+    .sechseck-canvas svg .sechseck-node.active .sechseck-node-icon { opacity: 1; }
+    @keyframes sechseckFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+    .sechseck-canvas svg .sechseck-node {
+      animation: sechseckFloat 4s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center center;
+    }
+    .sechseck-canvas svg .sechseck-nodes .sechseck-node:nth-child(1) { animation-delay: 0s; }
+    .sechseck-canvas svg .sechseck-nodes .sechseck-node:nth-child(2) { animation-delay: 0.35s; }
+    .sechseck-canvas svg .sechseck-nodes .sechseck-node:nth-child(3) { animation-delay: 0.7s; }
+    .sechseck-canvas svg .sechseck-nodes .sechseck-node:nth-child(4) { animation-delay: 1.05s; }
+    .sechseck-canvas svg .sechseck-nodes .sechseck-node:nth-child(5) { animation-delay: 1.4s; }
+    .sechseck-canvas svg .sechseck-nodes .sechseck-node:nth-child(6) { animation-delay: 1.75s; }
+    .sechseck-canvas svg .sechseck-node:hover,
+    .sechseck-canvas svg .sechseck-node.active { animation-play-state: paused; }
     @media (max-width: 500px) {
       .mobile-wrap { padding: 1rem 0.75rem; }
+      .sechseck-wrap { padding: 1rem 0.75rem; }
+      .sechseck-canvas svg .sechseck-node-label { font-size: 6.5px; }
+      .sechseck-canvas svg .sechseck-node-icon { font-size: 16px; }
+      .magic-hexagon-detail { padding: 1rem; }
       .mobile-canvas svg .m-node-label { font-size: 7px; }
       .mobile-canvas svg .m-node-tag { font-size: 5.5px; }
       .mobile-canvas svg .m-node-icon { font-size: 18px; }
@@ -941,6 +1091,181 @@
       color: var(--text-muted);
       margin: 0 0 1.5rem 0;
       line-height: 1.5;
+    }
+
+
+    .home-extras {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .home-extras-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.65rem;
+    }
+    .home-extras-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .home-extra-chip {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .home-extra-chip:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .home-extras { padding: 0.25rem 1rem 1.5rem; }
+      .home-extra-chip { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+    }
+    .ueben-section {
+      max-width: 960px;
+      width: 100%;
+      margin: 0.5rem auto 0;
+      padding: 0 1.5rem 2rem;
+    }
+    .ueben-header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .ueben-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.25rem;
+    }
+    .ueben-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .ueben-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.65rem;
+    }
+    .ueben-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+      position: relative;
+      animation: staggerIn 0.4s ease-out both;
+    }
+    .ueben-card:hover {
+      border-color: var(--ueben-color, var(--primary));
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .ueben-card-icon {
+      font-size: 1.4rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--ueben-color, var(--primary)) 10%, transparent);
+      flex-shrink: 0;
+    }
+    .ueben-card-body { flex: 1; min-width: 0; }
+    .ueben-card-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.1rem;
+    }
+    .ueben-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+    .ueben-card-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: white;
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      line-height: 1;
+    }
+    @media (max-width: 480px) {
+  
+    .home-extras {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .home-extras-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.65rem;
+    }
+    .home-extras-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .home-extra-chip {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .home-extra-chip:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .home-extras { padding: 0.25rem 1rem 1.5rem; }
+      .home-extra-chip { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+    }
+    .ueben-section { padding: 0 1rem 1.5rem; }
+      .ueben-grid { grid-template-columns: 1fr; }
+      .ueben-card { padding: 0.75rem 0.85rem; }
+      .ueben-card-icon { width: 2.2rem; height: 2.2rem; font-size: 1.2rem; }
     }
     .module-grid {
       display: grid;
@@ -1347,7 +1672,182 @@
       .content { padding: 1.75rem 1rem 2.5rem; }
       .content-block { padding: 1rem 1.1rem; }
       .course-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1rem 1.5rem; gap: 0.75rem; }
-      .module-grid { padding: 0 1rem 1.5rem; gap: 0.75rem; }
+  
+
+    .home-extras {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .home-extras-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.65rem;
+    }
+    .home-extras-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .home-extra-chip {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .home-extra-chip:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .home-extras { padding: 0.25rem 1rem 1.5rem; }
+      .home-extra-chip { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+    }
+    .ueben-section {
+      max-width: 960px;
+      width: 100%;
+      margin: 0.5rem auto 0;
+      padding: 0 1.5rem 2rem;
+    }
+    .ueben-header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .ueben-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.25rem;
+    }
+    .ueben-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .ueben-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.65rem;
+    }
+    .ueben-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+      position: relative;
+      animation: staggerIn 0.4s ease-out both;
+    }
+    .ueben-card:hover {
+      border-color: var(--ueben-color, var(--primary));
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .ueben-card-icon {
+      font-size: 1.4rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--ueben-color, var(--primary)) 10%, transparent);
+      flex-shrink: 0;
+    }
+    .ueben-card-body { flex: 1; min-width: 0; }
+    .ueben-card-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.1rem;
+    }
+    .ueben-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+    .ueben-card-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: white;
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      line-height: 1;
+    }
+    @media (max-width: 480px) {
+  
+    .home-extras {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .home-extras-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.65rem;
+    }
+    .home-extras-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .home-extra-chip {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .home-extra-chip:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .home-extras { padding: 0.25rem 1rem 1.5rem; }
+      .home-extra-chip { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+    }
+    .ueben-section { padding: 0 1rem 1.5rem; }
+      .ueben-grid { grid-template-columns: 1fr; }
+      .ueben-card { padding: 0.75rem 0.85rem; }
+      .ueben-card-icon { width: 2.2rem; height: 2.2rem; font-size: 1.2rem; }
+    }
+    .module-grid { padding: 0 1rem 1.5rem; gap: 0.75rem; }
       .course-card { padding: 1.25rem; }
       .module-card { padding: 1rem; }
       .cards-grid { gap: 1rem; }
@@ -1371,9 +1871,9 @@
       .header .tagline { font-size: 0.78rem; line-height: 1.4; }
 
       /* Navigation – horizontal scrollbar statt wrap */
-      .nav {
-        flex-wrap: nowrap;
-        overflow-x: auto;
+      .site-breadcrumb {
+        padding: 0.55rem 0.75rem;
+        gap: 0.25rem;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         justify-content: flex-start;
@@ -1381,8 +1881,7 @@
         padding: 0.4rem 0.5rem;
       }
       .nav::-webkit-scrollbar { display: none; }
-      .nav-btn {
-        flex-shrink: 0;
+      .site-breadcrumb .bc-link, .site-breadcrumb .bc-current {
         font-size: 0.78rem;
         padding: 0.4rem 0.65rem;
         white-space: nowrap;
@@ -1414,7 +1913,182 @@
       .course-card .course-badge { margin-bottom: 0.65rem; }
       .course-card .course-progress-bar { margin-top: 1rem; }
 
-      .module-grid {
+  
+
+    .home-extras {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .home-extras-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.65rem;
+    }
+    .home-extras-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .home-extra-chip {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .home-extra-chip:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .home-extras { padding: 0.25rem 1rem 1.5rem; }
+      .home-extra-chip { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+    }
+    .ueben-section {
+      max-width: 960px;
+      width: 100%;
+      margin: 0.5rem auto 0;
+      padding: 0 1.5rem 2rem;
+    }
+    .ueben-header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .ueben-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.25rem;
+    }
+    .ueben-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .ueben-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.65rem;
+    }
+    .ueben-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+      position: relative;
+      animation: staggerIn 0.4s ease-out both;
+    }
+    .ueben-card:hover {
+      border-color: var(--ueben-color, var(--primary));
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .ueben-card-icon {
+      font-size: 1.4rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--ueben-color, var(--primary)) 10%, transparent);
+      flex-shrink: 0;
+    }
+    .ueben-card-body { flex: 1; min-width: 0; }
+    .ueben-card-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.1rem;
+    }
+    .ueben-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+    .ueben-card-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: white;
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      line-height: 1;
+    }
+    @media (max-width: 480px) {
+  
+    .home-extras {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.25rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .home-extras-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 0.65rem;
+    }
+    .home-extras-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .home-extra-chip {
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .home-extra-chip:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 480px) {
+      .home-extras { padding: 0.25rem 1rem 1.5rem; }
+      .home-extra-chip { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+    }
+    .ueben-section { padding: 0 1rem 1.5rem; }
+      .ueben-grid { grid-template-columns: 1fr; }
+      .ueben-card { padding: 0.75rem 0.85rem; }
+      .ueben-card-icon { width: 2.2rem; height: 2.2rem; font-size: 1.2rem; }
+    }
+    .module-grid {
         grid-template-columns: 1fr;
         padding: 0 0.75rem 1.5rem;
         gap: 0.6rem;
@@ -1602,7 +2276,7 @@
     @media (max-width: 360px) {
       .header h1 { font-size: 1.05rem; }
       .header .tagline { font-size: 0.72rem; }
-      .nav-btn { font-size: 0.72rem; padding: 0.35rem 0.5rem; }
+      .site-breadcrumb .bc-link, .site-breadcrumb .bc-current { font-size: 0.72rem; }
       .content { padding: 1rem 0.5rem 1.75rem; }
       .section-title { font-size: 1.1rem !important; }
       .course-grid, .module-grid { padding: 0 0.5rem 1.25rem; }
@@ -1618,7 +2292,7 @@
 
     /* Touch-friendly tap targets */
     @media (hover: none) and (pointer: coarse) {
-      .nav-btn { min-height: 40px; display: inline-flex; align-items: center; }
+      .site-breadcrumb .bc-link { min-height: 40px; display: inline-flex; align-items: center; }
       .quiz-option { min-height: 44px; }
       .do-first-wrap .do-first-option { min-height: 44px; }
       .pruefungsbox .mc-option { min-height: 44px; }
@@ -1661,6 +2335,8 @@
           { id: 'verfassungsorgane', label: '🏛️ Verfassungsorgane', shortLabel: 'Verfassungsorgane im politischen Prozess', desc: 'Willensbildung und Entscheidung', icon: '🏛️', component: 'FullContentSection' },
           { id: 'politische-akteure', label: '👥 Politische Akteure', shortLabel: 'Politische Akteure im politischen Prozess', desc: 'Bürger, Parteien, Verbände, Initiativen', icon: '👥', component: 'FullContentSection' },
           { id: 'demokratietheorien', label: '📐 Demokratietheorien', shortLabel: 'Demokratietheorien (erhöhtes Niveau)', desc: 'Repräsentativ vs. plebiszitär', icon: '📐', component: 'FullContentSection' },
+          { id: 'flashcards-12-1', label: '📇 Karteikarten', shortLabel: 'Karteikarten 12.1', desc: 'Begriffe lernen', icon: '📇', component: 'FlashcardsSection', flashcardData: 'FLASHCARD_12_1', flashcardLabel: '12.1 – Partizipation' },
+          { id: 'wahr-falsch-12-1', label: '✓✗ Wahr/Falsch', shortLabel: 'Wahr oder Falsch', desc: 'Schnellrunde', icon: '✓', component: 'WahrFalschSection', wahrFalschData: 'WAHR_FALSCH_12_1', wahrFalschLabel: '12.1 – Partizipation' },
           { id: 'quiz-12-1', label: '🎯 Quiz', shortLabel: 'Quiz 12.1', desc: 'Teste dein Wissen zu 12.1', icon: '🎯', component: 'QuizSection', quizData: 'QUIZ_12_1', quizLabel: '12.1 – Politische Partizipation' },
         ],
       },
@@ -1677,6 +2353,8 @@
           { id: 'wirtschaftspolitik', label: '🎯 Wirtschaftspolitik', shortLabel: 'Wirtschaftspolitische Ziele, Maßnahmen und Zielkonflikte', desc: 'Magisches Sechseck', icon: '🎯', component: 'FullContentSection' },
           { id: 'verteilung-erhoeht', label: '📈 Verteilung (erhöht)', shortLabel: 'Einkommens- und Vermögensverteilung (erhöhtes Niveau)', desc: 'Umverteilung, politische Konzepte', icon: '📈', component: 'FullContentSection' },
           { id: 'wachstum-umwelt', label: '🌱 Wachstum & Umwelt', shortLabel: 'Wirtschaftswachstum und Schutz natürlicher Lebensgrundlagen', desc: 'Zielkonflikte', icon: '🌱', component: 'FullContentSection' },
+          { id: 'flashcards-12-2', label: '📇 Karteikarten', shortLabel: 'Karteikarten 12.2', desc: 'Begriffe lernen', icon: '📇', component: 'FlashcardsSection', flashcardData: 'FLASHCARD_12_2', flashcardLabel: '12.2 – Soziale Marktwirtschaft' },
+          { id: 'wahr-falsch-12-2', label: '✓✗ Wahr/Falsch', shortLabel: 'Wahr oder Falsch', desc: 'Schnellrunde', icon: '✓', component: 'WahrFalschSection', wahrFalschData: 'WAHR_FALSCH_12_2', wahrFalschLabel: '12.2 – Soziale Marktwirtschaft' },
           { id: 'quiz-12-2', label: '🎯 Quiz', shortLabel: 'Quiz 12.2', desc: 'Teste dein Wissen zu 12.2', icon: '🎯', component: 'QuizSection', quizData: 'QUIZ_12_2', quizLabel: '12.2 – Soziale Marktwirtschaft' },
         ],
       },
@@ -1691,6 +2369,8 @@
           { id: 'terrorismus', label: '🛡️ Terrorismus', shortLabel: 'Internationaler Terrorismus', desc: 'Erscheinungsformen, Ursachen, Maßnahmen', icon: '🛡️', component: 'FullContentSection' },
           { id: 'sicherheitspolitik', label: '🇩🇪 Außen- & Sicherheitspolitik', shortLabel: 'Außen- und Sicherheitspolitik Deutschlands – Rolle der Bundeswehr', desc: 'NATO, EU, Bundeswehr', icon: '🇩🇪', component: 'FullContentSection' },
           { id: 'entwicklungspolitik', label: '🌍 Entwicklungspolitik', shortLabel: 'Deutsche Entwicklungspolitik (erhöhtes Niveau)', desc: 'Ziele, Maßnahmen, präventive Friedenspolitik', icon: '🌍', component: 'FullContentSection' },
+          { id: 'flashcards-13-1', label: '📇 Karteikarten', shortLabel: 'Karteikarten 13.1', desc: 'Begriffe lernen', icon: '📇', component: 'FlashcardsSection', flashcardData: 'FLASHCARD_13_1', flashcardLabel: '13.1 – Friedenssicherung' },
+          { id: 'wahr-falsch-13-1', label: '✓✗ Wahr/Falsch', shortLabel: 'Wahr oder Falsch', desc: 'Schnellrunde', icon: '✓', component: 'WahrFalschSection', wahrFalschData: 'WAHR_FALSCH_13_1', wahrFalschLabel: '13.1 – Friedenssicherung' },
           { id: 'quiz-13-1', label: '🎯 Quiz', shortLabel: 'Quiz 13.1', desc: 'Teste dein Wissen zu 13.1', icon: '🎯', component: 'QuizSection', quizData: 'QUIZ_13_1', quizLabel: '13.1 – Friedenssicherung' },
         ],
       },
@@ -1706,8 +2386,8 @@
           { id: 'leitbilder', label: '⚖️ Leitbilder', shortLabel: 'Leitbilder', desc: 'Freihandel vs. Protektionismus', icon: '⚖️', component: 'LeitbilderSection' },
           { id: 'hemmnisse', label: '🚧 Handelshemmnisse', shortLabel: 'Handelshemmnisse', desc: 'Zölle, Quoten, Wirkungskette', icon: '🚧', component: 'HemmnisseSection' },
           { id: 'regime', label: '🤝 Handelsregime', shortLabel: 'Handelsregime', desc: 'WTO, Handelsabkommen', icon: '🤝', component: 'RegimeSection' },
-          { id: 'flashcards', label: '📇 Karteikarten', shortLabel: 'Karteikarten', desc: 'Begriffe lernen und wiederholen', icon: '📇', component: 'FlashcardsSection' },
-          { id: 'lernplakat', label: '🗺️ Lernplakat', shortLabel: 'Lernplakat', desc: 'Alle Themen auf einen Blick', icon: '🗺️', component: 'Lernplakat132' },
+          { id: 'flashcards', label: '📇 Karteikarten', shortLabel: 'Karteikarten 13.2', desc: 'Begriffe lernen', icon: '📇', component: 'FlashcardsSection', flashcardData: 'FLASHCARD_TERMS', flashcardLabel: '13.2 – Weltwirtschaft' },
+          { id: 'wahr-falsch-13-2', label: '✓✗ Wahr/Falsch', shortLabel: 'Wahr oder Falsch', desc: 'Schnellrunde', icon: '✓', component: 'WahrFalschSection', wahrFalschData: 'WAHR_FALSCH_13_2', wahrFalschLabel: '13.2 – Weltwirtschaft' },
           { id: 'quiz', label: '🎯 Quiz', shortLabel: 'Quiz 13.2', desc: 'Teste dein Wissen zu 13.2', icon: '🎯', component: 'QuizSection', quizData: 'QUIZ_QUESTIONS', quizLabel: '13.2 – Weltwirtschaftliche Verflechtungen' },
         ],
       },
@@ -1764,10 +2444,22 @@
       );
     }
 
-    function ModuleGridSection({ course, onVisited, onSelectModule, visited }) {
+    function ModuleGridSection({ course, onVisited, onSelectModule, visited, onOpenExtra }) {
       if (!course) return null;
       React.useEffect(() => { onVisited && onVisited(`${course.id}-overview`); }, [course.id]);
       const visitKey = (moduleId) => `${course.id}-${moduleId}`;
+      const getQuizScore = (mod) => {
+        if (!mod.quizLabel) return null;
+        try {
+          const key = 'politik-quiz-' + mod.quizLabel.replace(/[^a-zA-Z0-9]/g, '-');
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : null;
+        } catch(e) { return null; }
+      };
+      const themenModules = course.modules.filter(m => !['FlashcardsSection','QuizSection','WahrFalschSection'].includes(m.component));
+      const uebenModules = course.modules.filter(m => ['FlashcardsSection','QuizSection','WahrFalschSection'].includes(m.component));
+      const uebenColors = { 'FlashcardsSection': '#8b5cf6', 'QuizSection': '#2563eb', 'WahrFalschSection': '#f59e0b' };
+      const uebenIcons = { 'FlashcardsSection': '📇', 'QuizSection': '🎯', 'WahrFalschSection': '✓✗' };
       return (
         <div className="content" style={{ paddingTop: 0 }}>
           <div className="hero">
@@ -1776,7 +2468,7 @@
             <p className="subline">{course.description}</p>
           </div>
           <div className="module-grid">
-            {course.modules.map((mod, idx) => (
+            {themenModules.map((mod, idx) => (
               <button
                 key={mod.id}
                 type="button"
@@ -1791,9 +2483,110 @@
               </button>
             ))}
           </div>
+
+          <div className="ueben-section">
+            <div className="ueben-header">
+              <h3>Üben & Wiederholen</h3>
+              <p>Teste dein Wissen mit verschiedenen Lernformaten</p>
+            </div>
+            <div className="ueben-grid">
+              {uebenModules.map((mod, idx) => {
+                const color = uebenColors[mod.component] || 'var(--primary)';
+                const qs = getQuizScore(mod);
+                return (
+                  <button
+                    key={mod.id}
+                    type="button"
+                    className="ueben-card"
+                    style={{ '--ueben-color': color, animationDelay: (idx * 0.08) + 's' }}
+                    onClick={() => onSelectModule && onSelectModule(mod.id)}
+                  >
+                    <div className="ueben-card-icon">{uebenIcons[mod.component] || mod.icon}</div>
+                    <div className="ueben-card-body">
+                      <div className="ueben-card-title">{mod.shortLabel}</div>
+                      <div className="ueben-card-desc">{mod.desc}</div>
+                    </div>
+                    {qs && <span className="ueben-card-badge" style={{ background: qs.score === qs.total ? 'var(--accent)' : color }}>{qs.score}/{qs.total}</span>}
+                    {!qs && visited && visited[`${course.id}-${mod.id}`] && <span className="ueben-card-badge" style={{ background: '#94a3b8' }}>✓</span>}
+                  </button>
+                );
+              })}
+              <button
+                type="button"
+                className="ueben-card"
+                style={{ '--ueben-color': '#10b981', animationDelay: '0.24s' }}
+                onClick={() => onOpenExtra && onOpenExtra('lernplakat-' + course.id)}
+              >
+                <div className="ueben-card-icon">🗺️</div>
+                <div className="ueben-card-body">
+                  <div className="ueben-card-title">Lernplakat</div>
+                  <div className="ueben-card-desc">Alle Themen auf einen Blick</div>
+                </div>
+              </button>
+              <button
+                type="button"
+                className="ueben-card"
+                style={{ '--ueben-color': '#6366f1', animationDelay: '0.32s' }}
+                onClick={() => onOpenExtra && onOpenExtra('operatoren')}
+              >
+                <div className="ueben-card-icon">📝</div>
+                <div className="ueben-card-body">
+                  <div className="ueben-card-title">Operatoren-Glossar</div>
+                  <div className="ueben-card-desc">Was Aufgaben von dir verlangen</div>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
       );
     }
+
+    const FLASHCARD_12_1 = [
+      { term: 'Partizipation', def: 'Beteiligung der Bürger:innen am politischen Willensbildungs- und Entscheidungsprozess.' },
+      { term: 'Konventionelle Partizipation', def: 'Institutionalisierte Formen: Wahlen, Parteimitgliedschaft, Petition.' },
+      { term: 'Unkonventionelle Partizipation', def: 'Nicht institutionalisiert: Demonstration, Boykott, Besetzung, Bürgerinitiative.' },
+      { term: 'Volkssouveränität', def: 'Alle Staatsgewalt geht vom Volke aus (Art. 20 GG).' },
+      { term: 'Gewaltenteilung', def: 'Trennung in Legislative, Exekutive und Judikative zur gegenseitigen Kontrolle.' },
+      { term: 'Bundestag', def: 'Volksvertretung, wählt Bundeskanzler:in, Gesetzgebung, Haushalt, Kontrolle der Regierung.' },
+      { term: 'Bundesrat', def: 'Vertretung der Länder auf Bundesebene, Mitwirkung bei Gesetzgebung.' },
+      { term: 'Bundesverfassungsgericht', def: 'Hüter der Verfassung, Sitz in Karlsruhe, Normenkontrolle, Verfassungsbeschwerde.' },
+      { term: 'Parlamentsvorbehalt', def: 'Bundeswehreinsätze brauchen Zustimmung des Bundestags.' },
+      { term: 'Repräsentative Demokratie', def: 'Gewählte Abgeordnete entscheiden stellvertretend (John Stuart Mill).' },
+      { term: 'Plebiszitäre Demokratie', def: 'Direkte Bürgerbeteiligung an Sachentscheidungen (Rousseau als Bezugspunkt).' },
+      { term: 'Verbände', def: 'Organisierte Interessengruppen, die politischen Einfluss ausüben (Lobbyismus).' },
+      { term: 'Politikzyklus', def: 'Phasen: Agenda-Setting → Politikformulierung → Entscheidung → Implementation → Evaluation.' },
+    ];
+
+    const FLASHCARD_12_2 = [
+      { term: 'Soziale Marktwirtschaft', def: 'Wirtschaftsordnung: Markt + sozialer Ausgleich. Geprägt von Alfred Müller-Armack.' },
+      { term: 'Sozialprinzip', def: 'Staat sichert soziale Grundversorgung und gleicht Marktversagen aus.' },
+      { term: 'Wettbewerbsprinzip', def: 'Funktionierender Wettbewerb als Grundlage effizienter Märkte.' },
+      { term: 'Marktkonformitätsprinzip', def: 'Staatliche Eingriffe sollen den Preismechanismus möglichst wenig stören.' },
+      { term: 'Haftungsprinzip', def: 'Wer wirtschaftliche Entscheidungen trifft, muss für deren Folgen einstehen.' },
+      { term: 'Gini-Koeffizient', def: 'Maß für Ungleichheit: 0 = völlige Gleichheit, 1 = maximale Ungleichheit.' },
+      { term: 'Magisches Sechseck', def: '6 wirtschaftspolitische Ziele: Wachstum, Vollbeschäftigung, Preisstabilität, außenwirtschaftl. Gleichgewicht, Verteilung, Umwelt.' },
+      { term: 'Nachfrageorientierte Politik', def: 'Keynes: Staat stützt in Krisen die Nachfrage durch Ausgaben und Investitionen.' },
+      { term: 'Angebotsorientierte Politik', def: 'Verbesserung der Produktionsbedingungen: Steuersenkungen, Deregulierung, Flexibilisierung.' },
+      { term: 'Öffentliches Gut', def: 'Nicht rival und nicht ausschließbar (z. B. Landesverteidigung, saubere Luft).' },
+      { term: 'Bundeskartellamt', def: 'Sichert Wettbewerb: Kartellverbot, Fusionskontrolle, Missbrauchsaufsicht.' },
+      { term: 'EZB', def: 'Europäische Zentralbank, Hauptziel: Preisniveaustabilität (Inflation nahe 2 %).' },
+      { term: 'Transferleistungen', def: 'Staatliche Zahlungen ohne direkte Gegenleistung (z. B. Kindergeld, ALG II).' },
+    ];
+
+    const FLASHCARD_13_1 = [
+      { term: 'Neue Kriege', def: 'Privatisierung, Ökonomisierung, Entrechtlichung der Gewalt; Milizen statt regulärer Armeen.' },
+      { term: 'Innerstaatlicher Konflikt', def: 'Konflikt innerhalb eines Staates (Bürgerkrieg, ethnischer Konflikt).' },
+      { term: 'Terrorismus', def: 'Politisch motivierte Gewalt, die durch Angst und Schrecken Wirkung über die Opfer hinaus erzielt.' },
+      { term: 'NATO', def: 'Nordatlantisches Verteidigungsbündnis, Art. 5: Bündnisfall (Angriff auf einen = Angriff auf alle).' },
+      { term: 'GASP', def: 'Gemeinsame Außen- und Sicherheitspolitik der EU.' },
+      { term: 'GSVP', def: 'Gemeinsame Sicherheits- und Verteidigungspolitik der EU.' },
+      { term: 'Zeitenwende', def: 'Scholz 27.2.2022: Neue Sicherheitslage nach russischem Angriff auf die Ukraine, mehr Verteidigung.' },
+      { term: 'Parlamentsarmee', def: 'Bundeswehr: Einsätze nur mit Zustimmung des Bundestags (Parlamentsvorbehalt).' },
+      { term: 'Sicherheitsdilemma', def: 'Aufrüstung eines Staates wird von anderen als Bedrohung empfunden → Rüstungsspirale.' },
+      { term: 'Multilateralismus', def: 'Zusammenarbeit vieler Staaten in internationalen Organisationen (UNO, NATO, EU).' },
+      { term: 'Entwicklungspolitik', def: 'Maßnahmen zur Förderung wirtschaftlicher und sozialer Entwicklung in ärmeren Ländern.' },
+      { term: 'Präventive Friedenspolitik', def: 'Konfliktverhütung durch Diplomatie, Entwicklungshilfe und Demokratieförderung.' },
+    ];
 
     const FLASHCARD_TERMS = [
       { term: 'Globalisierung', def: 'Zunehmende weltweite Verflechtung in Wirtschaft, Politik und Kultur.' },
@@ -2136,11 +2929,11 @@
             type: 'magic-hexagon',
             title: '⬡ Magisches Sechseck – Klicke auf ein Ziel für die Erklärung',
             items: [
-              { label: 'Wachstum', description: 'Steigendes Bruttoinlandsprodukt (BIP). Wirtschaft soll sich positiv entwickeln, um Wohlstand und Beschäftigung zu sichern.' },
+              { label: 'Angemessenes Wirtschaftswachstum', description: 'Steigendes Bruttoinlandsprodukt (BIP). Wirtschaft soll sich positiv entwickeln, um Wohlstand und Beschäftigung zu sichern.' },
               { label: 'Vollbeschäftigung', description: 'Möglichst hohe Beschäftigung, geringe Arbeitslosigkeit. Ein wichtiges soziales und wirtschaftliches Ziel.' },
               { label: 'Preisniveaustabilität', description: 'Stabile Preise, geringe Inflation. Schützt Ersparnisse und Planungssicherheit. Zuständig: EZB (Europäische Zentralbank), Präsidentin Christine Lagarde (seit 2019, Stand 2026) – Leitzins, Geldpolitik.' },
               { label: 'Außenwirtschaftliches Gleichgewicht', description: 'Ausgewogene Handels- und Zahlungsbilanz. Kein dauerhaftes Defizit oder Überschuss, um Abhängigkeiten zu begrenzen.' },
-              { label: 'Gerechte Verteilung', description: 'Einkommen und Vermögen sollen als fair empfunden werden. Verbindung von Leistungsanreiz und sozialem Ausgleich.' },
+              { label: 'Gerechte Einkommens- und Vermögensverteilung', description: 'Einkommen und Vermögen sollen als fair empfunden werden. Verbindung von Leistungsanreiz und sozialem Ausgleich.' },
               { label: 'Umweltverträgliches Wirtschaften', description: 'Wirtschaften im Einklang mit natürlichen Ressourcen und Klima. Oft im Zielkonflikt mit kurzfristigem Wachstum.' },
             ],
           },
@@ -2618,54 +3411,136 @@
       );
     }
 
+    /* posA/posB = Index in positions[] (vertexOrder: Pos 0→Item2, 1→Item1, 2→Item3, 3→Item4, 4→Item5, 5→Item0) */
+    const SECHSECK_KONFLIKTE = [
+      { posA: 5, posB: 4, a: 'Angemessenes Wirtschaftswachstum', b: 'Umweltverträgliches Wirtschaften',
+        erklaerung: 'Mehr Produktion und Konsum belasten natürliche Ressourcen und das Klima. Umgekehrt können strenge Umweltauflagen kurzfristig das Wirtschaftswachstum bremsen, weil Unternehmen höhere Kosten tragen.',
+        beispiel: 'Beispiel: Der Kohleausstieg fördert den Klimaschutz, kostet aber Arbeitsplätze und BIP in Kohleregionen. CO₂-Bepreisung verteuert Produktion, senkt aber Emissionen.' },
+      { posA: 1, posB: 0, a: 'Vollbeschäftigung', b: 'Preisniveaustabilität',
+        erklaerung: 'Bei hoher Beschäftigung steigen Löhne, weil Arbeitskräfte knapp werden. Höhere Löhne treiben die Produktionskosten und damit die Preise (Lohn-Preis-Spirale). Umgekehrt kann die Bekämpfung von Inflation durch Zinserhöhungen die Wirtschaft bremsen und Arbeitslosigkeit erhöhen.',
+        beispiel: 'Beispiel (Phillips-Kurve): Die EZB erhöht 2022–2024 die Leitzinsen, um die Inflation zu senken. Folge: Kredite werden teurer, Investitionen sinken, Arbeitslosigkeit steigt leicht.' },
+      { posA: 3, posB: 5, a: 'Gerechte Einkommens- und Vermögensverteilung', b: 'Angemessenes Wirtschaftswachstum',
+        erklaerung: 'Starke Umverteilung (hohe Steuern, hohe Sozialleistungen) kann Leistungsanreize mindern und Investitionen bremsen. Wenig Umverteilung fördert zwar Anreize, vergrößert aber die Ungleichheit und gefährdet den sozialen Zusammenhalt.',
+        beispiel: 'Beispiel: Ein höherer Spitzensteuersatz finanziert Sozialleistungen, kann aber dazu führen, dass Gutverdiener weniger investieren oder ins Ausland abwandern.' },
+    ];
+
     function MagicHexagonWidget({ title, items }) {
       const [active, setActive] = useState(null);
+      const [activeKonflikt, setActiveKonflikt] = useState(null);
+      const [showKonflikte, setShowKonflikte] = useState(false);
       if (!items || items.length < 6) return null;
       const ordered = items.slice(0, 6);
-      const cx = 150; const cy = 150; const r = 108;
+      const cx = 200, cy = 185, r = 125, nr = 44;
+      const colors = ['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4'];
       const vertexOrder = [2, 1, 3, 4, 5, 0];
-      const positions = vertexOrder.map((_, i) => {
-        const deg = 90 - i * 60;
-        const rad = (deg * Math.PI) / 180;
+      const positions = vertexOrder.map(function(_, i) {
+        var deg = 90 - i * 60;
+        var rad = (deg * Math.PI) / 180;
         return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
       });
+      var hexPts = positions.map(function(p){ return p.x+','+p.y; }).join(' ');
       return (
-        <div className="content-block">
-          <div className="content-block-title"><span className="icon-wrap">⬡</span> {title || 'Magisches Sechseck'}</div>
-          <div className="magic-hexagon-wrap">
-          <div className="magic-hexagon-svg-wrap" style={{ paddingBottom: '100%' }}>
-            <svg className="magic-hexagon-svg" viewBox="0 0 300 300" style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%' }}>
-              <polygon className="magic-hexagon-path" points={positions.map(p => `${p.x},${p.y}`).join(' ')} strokeWidth="2" />
+        <div className="sechseck-wrap">
+          <h4>⬡ {title || 'Magisches Sechseck'}</h4>
+          <div className="sechseck-hint">Tippe auf ein Ziel für die Erklärung. Mit dem Button Konflikte einblenden und dann eine Konfliktlinie antippen.</div>
+          <div className="sechseck-legend">
+            <span className="sechseck-legend-item"><span className="sechseck-legend-dot" style={{ background: '#3b82f6' }} /> Ziel</span>
+            <span className="sechseck-legend-item"><span className="sechseck-legend-dot" style={{ border: '2px dashed #ef4444', background: 'transparent', width: 8, height: 8 }} /> Zielkonflikt</span>
+            <button type="button" className="sechseck-konflikt-btn" onClick={function(){ setShowKonflikte(function(prev){ return !prev; }); }}>
+              {showKonflikte ? 'Konflikte ausblenden' : 'Zielkonflikte hervorheben'}
+            </button>
+          </div>
+          <div className="sechseck-canvas">
+            <svg viewBox="0 0 400 380" style={{ width: '100%', maxWidth: 460, display: 'block', margin: '0 auto' }} xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="hexGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="rgba(59,130,246,0.06)" />
+                  <stop offset="100%" stopColor="rgba(59,130,246,0.01)" />
+                </radialGradient>
+                <filter id="sechseckNodeShadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.1" />
+                </filter>
+                <filter id="glowRed">
+                  <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#ef4444" floodOpacity="0.35" />
+                </filter>
+              </defs>
+              <polygon points={hexPts} fill="url(#hexGrad)" stroke="#94a3b8" strokeWidth="1.2" strokeLinejoin="round" opacity="0.95" />
+              {showKonflikte && SECHSECK_KONFLIKTE.map(function(konf, ki) {
+                var a = positions[konf.posA], b = positions[konf.posB];
+                var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+                return (
+                  <g key={'kg'+ki} style={{ cursor: 'pointer' }} onClick={function(){ setActiveKonflikt(ki); }}>
+                    <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="transparent" strokeWidth="22" />
+                    <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#ef4444" strokeWidth="2" strokeDasharray="7,5" opacity="0.6" filter="url(#glowRed)" />
+                    <circle cx={mx} cy={my} r="6" fill="#ef4444" opacity="0.7">
+                      <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <text x={mx} y={my} textAnchor="middle" dominantBaseline="central" fontSize="5.5" fontWeight="700" fill="#fff">!</text>
+                  </g>
+                );
+              })}
+              <g className="sechseck-nodes">
+                {vertexOrder.map(function(itemIdx, posIdx) {
+                  var p = positions[posIdx];
+                  var c = colors[posIdx % colors.length];
+                  var isActive = active === itemIdx;
+                  var label = ordered[itemIdx].label;
+                  var words = label.split(/\s+/);
+                  var lines = [];
+                  if (words.length <= 2) { lines = [label]; }
+                  else { var mid = Math.ceil(words.length / 2); lines = [words.slice(0, mid).join(' '), words.slice(mid).join(' ')]; }
+                  var icons = ['📈','👥','💶','🌐','⚖️','🌱'];
+                  var icon = icons[itemIdx] || '◆';
+                  return (
+                    <g key={'n'+posIdx} className={'sechseck-node' + (isActive ? ' active' : '')} onClick={function(){ setActive(active === itemIdx ? null : itemIdx); }} filter="url(#sechseckNodeShadow)">
+                      <circle className="sechseck-node-bg" cx={p.x} cy={p.y} r={isActive ? nr + 2 : nr} fill={isActive ? c : '#fff'} opacity="0.98" />
+                      <circle className="sechseck-node-border" cx={p.x} cy={p.y} r={isActive ? nr + 2 : nr} stroke={c} strokeWidth={isActive ? 3 : 2} />
+                      <text className="sechseck-node-icon" x={p.x} y={p.y - 8} textAnchor="middle" dominantBaseline="middle">{icon}</text>
+                      <text className="sechseck-node-label" x={p.x} y={p.y + 10} textAnchor="middle" dominantBaseline="hanging">
+                        {lines.map(function(l, li) { return <tspan key={li} x={p.x} dy={li === 0 ? 0 : 10}>{l}</tspan>; })}
+                      </text>
+                    </g>
+                  );
+                })}
+              </g>
             </svg>
-            {vertexOrder.map((itemIdx, posIdx) => {
-              const p = positions[posIdx];
-              const pctX = (p.x / 300) * 100;
-              const pctY = (p.y / 300) * 100;
-              return (
-                <button
-                  key={posIdx}
-                  type="button"
-                  className={'magic-hexagon-node' + (active === itemIdx ? ' active' : '')}
-                  onClick={() => setActive(active === itemIdx ? null : itemIdx)}
-                  title={ordered[itemIdx].description}
-                  style={{
-                    left: pctX + '%',
-                    top: pctY + '%',
-                    transform: 'translate(-50%, -50%)',
-                  }}
-                >
-                  {ordered[itemIdx].label}
-                </button>
-              );
-            })}
           </div>
           {active !== null && ordered[active] && (
             <div className="magic-hexagon-detail">
-              <h4>{ordered[active].label}</h4>
-              <p>{ordered[active].description}</p>
+              <div className="mobile-detail-header">
+                <div className="magic-hexagon-detail-icon" style={{ background: colors[active % colors.length] + '18', color: colors[active % colors.length] }}>{['📈','👥','💶','🌐','⚖️','🌱'][active]}</div>
+                <div>
+                  <h5 style={{ margin: 0 }}>{ordered[active].label}</h5>
+                </div>
+              </div>
+              <p className="mobile-detail-body" style={{ marginBottom: 0 }}>{ordered[active].description}</p>
             </div>
           )}
-          </div>
+          {activeKonflikt !== null && SECHSECK_KONFLIKTE[activeKonflikt] && (
+            <div className="begriffe-modal-overlay" onClick={function(e){ if (e.target === e.currentTarget) setActiveKonflikt(null); }}>
+              <div className="begriffe-modal" onClick={function(e){ e.stopPropagation(); }}>
+                <button type="button" className="begriffe-modal-close" onClick={function(){ setActiveKonflikt(null); }}>✕</button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                  <span style={{ fontSize: '1.1rem' }}>⚡</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#ef4444' }}>Zielkonflikt</span>
+                </div>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <span>{SECHSECK_KONFLIKTE[activeKonflikt].a}</span>
+                  <span style={{ color: '#ef4444', fontSize: '1rem' }}>⟷</span>
+                  <span>{SECHSECK_KONFLIKTE[activeKonflikt].b}</span>
+                </h3>
+                <p className="bm-kurz">{SECHSECK_KONFLIKTE[activeKonflikt].erklaerung}</p>
+                <div style={{ padding: '0.75rem 1rem', borderRadius: '10px', background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.12)', fontSize: '0.88rem', lineHeight: 1.55, color: 'var(--text)' }}>
+                  <strong style={{ color: '#3b82f6' }}>Praxisbeispiel: </strong>
+                  {SECHSECK_KONFLIKTE[activeKonflikt].beispiel.replace(/^Beispiel[^:]*:\s*/, '')}
+                </div>
+                <div className="bm-tipp" style={{ marginTop: '0.75rem' }}>
+                  <strong>Prüfungstipp: </strong>Zielkonflikte erkennen und mit konkreten Beispielen erklären können – das ist ein Klassiker!
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       );
     }
@@ -3164,7 +4039,292 @@
       );
     }
 
+
+    // ====== BEGRIFFE VISUALISIERUNGEN ======
+
+    const BEGRIFFE_VIS = {
+      'gewaltenteilung': { title: 'Gewaltenteilung', kurz: 'Trennung der Staatsgewalt in drei Gewalten zur gegenseitigen Kontrolle (Checks and Balances).', vis: 'drei-saeulen', tipp: 'Die drei Gewalten und ihre Kontrollfunktionen benennen. Art. 20 Abs. 2 GG!' },
+      'politikzyklus': { title: 'Politikzyklus', kurz: 'Modell des politischen Prozesses in f\u00fcnf aufeinander folgenden Phasen.', vis: 'kreislauf', tipp: 'Phasen in der richtigen Reihenfolge nennen und mit einem Beispiel belegen.' },
+      'gini-koeffizient': { title: 'Gini-Koeffizient', kurz: 'Statistisches Ma\u00df f\u00fcr die Ungleichverteilung (0 = v\u00f6llige Gleichheit, 1 = maximale Ungleichheit).', vis: 'lorenzkurve', tipp: 'Lorenzkurve zeichnen k\u00f6nnen! Die Fl\u00e4che zwischen Diagonale und Kurve = Gini.' },
+      'magisches-sechseck': { title: 'Magisches Sechseck', kurz: 'Sechs wirtschaftspolitische Ziele, die oft in Konflikt zueinander stehen.', vis: 'sechseck-mini', tipp: 'Alle 6 Ziele aufz\u00e4hlen und mindestens 2 Zielkonflikte erkl\u00e4ren.' },
+      'opportunit\u00e4tskosten': { title: 'Opportunit\u00e4tskosten', kurz: 'Der Nutzen der besten nicht gew\u00e4hlten Alternative \u2013 der \"Preis\" einer Entscheidung.', vis: 'beispiel-rechnung', tipp: 'Bei Ricardo entscheiden Opportunit\u00e4tskosten, nicht absolute Kosten!' },
+      'prinzipien-smw': { title: 'Prinzipien der Sozialen Marktwirtschaft', kurz: 'F\u00fcnf Ordnungsprinzipien bilden das Fundament der Sozialen Marktwirtschaft.', vis: 'fuenf-prinzipien', tipp: 'Alle 5 Prinzipien benennen und erkl\u00e4ren (M\u00fcller-Armack/Erhard).' },
+      'sicherheitsdilemma': { title: 'Sicherheitsdilemma', kurz: 'Aufr\u00fcstung eines Staates wird von anderen als Bedrohung empfunden \u2013 R\u00fcstungsspirale.', vis: 'spirale', tipp: 'Mechanismus der R\u00fcstungsspirale erkl\u00e4ren und mit aktuellem Beispiel (NATO/Russland) belegen.' },
+      'neue-kriege': { title: 'Neue Kriege vs. Alte Kriege', kurz: 'M\u00fcnklers Konzept: Moderne Konflikte unterscheiden sich grundlegend von klassischen Staatenkriegen.', vis: 'vergleich', tipp: 'Die drei Merkmale (Privatisierung, \u00d6konomisierung, Entrechtlichung) erkl\u00e4ren.' },
+      'komparative-kostenvorteile': { title: 'Komparative Kostenvorteile', kurz: 'Ricardo: Handel lohnt sich auch ohne absolute Vorteile \u2013 entscheidend sind Opportunit\u00e4tskosten.', vis: 'zwei-laender-tabelle', tipp: 'Rechenbeispiel mit zwei L\u00e4ndern/G\u00fctern durchrechnen k\u00f6nnen!' },
+      'freihandel-protektionismus': { title: 'Freihandel vs. Protektionismus', kurz: 'Zwei gegens\u00e4tzliche Leitbilder der Handelspolitik mit unterschiedlichen Folgen.', vis: 'waage', tipp: 'Pro/Contra beider Seiten er\u00f6rtern und mit aktuellen Beispielen belegen.' },
+      'wirkungskette-handelshemmnisse': { title: 'Wirkungskette von Handelshemmnissen', kurz: 'Schutzz\u00f6lle oder Quoten setzen eine Kette \u00f6konomischer Wirkungen in Gang.', vis: 'kette', tipp: 'Die Wirkungskette Schritt f\u00fcr Schritt erkl\u00e4ren (Klausur-Klassiker!).' },
+    };
+
+    const BEGRIFFE_ALIASES = {
+      'gewaltenteilung': 'gewaltenteilung', 'politikzyklus': 'politikzyklus',
+      'gini-koeffizient': 'gini-koeffizient', 'magisches sechseck': 'magisches-sechseck',
+      'opportunit\u00e4tskosten': 'opportunit\u00e4tskosten',
+      'soziale marktwirtschaft': 'prinzipien-smw',
+      'sicherheitsdilemma': 'sicherheitsdilemma', 'neue kriege': 'neue-kriege',
+      'komparative kostenvorteile': 'komparative-kostenvorteile',
+      'freihandel': 'freihandel-protektionismus', 'protektionismus': 'freihandel-protektionismus',
+      'freihandel vs. protektionismus': 'freihandel-protektionismus',
+      'wirkungskette': 'wirkungskette-handelshemmnisse',
+    };
+
+    function begriffKeyFromTerm(term) {
+      const t = term.toLowerCase().trim();
+      if (BEGRIFFE_VIS[t]) return t;
+      for (const [k, v] of Object.entries(BEGRIFFE_VIS)) { if (v.title.toLowerCase() === t) return k; }
+      if (BEGRIFFE_ALIASES[t]) return BEGRIFFE_ALIASES[t];
+      return null;
+    }
+
+    function VisDreiSaeulen() {
+      const s = [
+        { t: 'Legislative', sub: 'Gesetzgebung', org: 'Bundestag, Bundesrat', c: '#3b82f6' },
+        { t: 'Exekutive', sub: 'Ausf\u00fchrung', org: 'Bundesregierung, Verwaltung', c: '#10b981' },
+        { t: 'Judikative', sub: 'Rechtsprechung', org: 'BVerfG, Gerichte', c: '#8b5cf6' },
+      ];
+      return React.createElement('div', {style:{textAlign:'center'}},
+        React.createElement('div', {style:{display:'flex',gap:'0.75rem',justifyContent:'center',marginBottom:'1rem'}},
+          s.map((x,i) => React.createElement('div', {key:i, style:{flex:1,maxWidth:160,padding:'1rem 0.75rem',borderRadius:'14px',background:x.c+'10',border:'2px solid '+x.c+'30'}},
+            React.createElement('div', {style:{fontWeight:700,fontSize:'0.95rem',color:x.c}}, x.t),
+            React.createElement('div', {style:{fontSize:'0.75rem',color:'var(--text-muted)',marginBottom:'0.5rem'}}, x.sub),
+            React.createElement('div', {style:{fontSize:'0.8rem',color:'var(--text)'}}, x.org)
+          ))
+        ),
+        React.createElement('div', {style:{textAlign:'center',fontSize:'0.82rem',color:'var(--text-muted)',marginTop:'0.25rem'}}, '\u2194 gegenseitige Kontrolle (Checks and Balances)')
+      );
+    }
+
+    function VisKreislauf() {
+      const phasen = ['Agenda-Setting', 'Politikformulierung', 'Entscheidung', 'Implementation', 'Evaluation'];
+      const colors = ['#3b82f6','#8b5cf6','#ef4444','#f59e0b','#10b981'];
+      return React.createElement('div', {style:{display:'flex',flexDirection:'column',gap:'0.35rem'}},
+        phasen.map((p,i) => React.createElement('div', {key:i, style:{display:'flex',alignItems:'center',gap:'0.5rem'}},
+          React.createElement('div', {style:{width:28,height:28,borderRadius:'50%',background:colors[i]+'18',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'0.75rem',fontWeight:700,color:colors[i],flexShrink:0}}, i+1),
+          React.createElement('div', {style:{flex:1,padding:'0.5rem 0.75rem',borderRadius:'10px',background:colors[i]+'08',borderLeft:'3px solid '+colors[i],fontSize:'0.88rem',fontWeight:600,color:'var(--text)'}}, p),
+          i < phasen.length - 1 ? React.createElement('span', {style:{fontSize:'1rem',color:'#94a3b8'}}, '\u2193') : React.createElement('span', {style:{fontSize:'0.75rem',color:'#94a3b8'}}, '\u21bb zurück zu 1')
+        ))
+      );
+    }
+
+    function VisLorenzkurve() {
+      return React.createElement('div', {style:{textAlign:'center'}},
+        React.createElement('svg', {viewBox:'0 0 220 220', style:{width:'100%',maxWidth:260}},
+          React.createElement('rect', {x:40,y:10,width:170,height:170,fill:'none',stroke:'var(--border)',strokeWidth:1}),
+          React.createElement('line', {x1:40,y1:180,x2:210,y2:10,stroke:'#10b981',strokeWidth:2,strokeDasharray:'6,4'}),
+          React.createElement('path', {d:'M40,180 Q120,175 160,140 T210,10',fill:'rgba(239,68,68,0.08)',stroke:'#ef4444',strokeWidth:2.5}),
+          React.createElement('path', {d:'M40,180 L210,10 Q160,140 120,175 Z',fill:'rgba(59,130,246,0.08)',stroke:'none'}),
+          React.createElement('text', {x:125,y:200,textAnchor:'middle',fontSize:9,fill:'var(--text-muted)'},'Bev\u00f6lkerung (%)'),
+          React.createElement('text', {x:130,y:75,fontSize:8,fill:'#3b82f6',fontWeight:600},'Gini-Fl\u00e4che'),
+          React.createElement('text', {x:100,y:55,fontSize:8,fill:'#10b981',fontWeight:600},'Gleichverteilung'),
+          React.createElement('text', {x:165,y:135,fontSize:8,fill:'#ef4444',fontWeight:600},'Lorenzkurve')
+        ),
+        React.createElement('div', {style:{display:'flex',justifyContent:'center',gap:'1rem',marginTop:'0.5rem',fontSize:'0.8rem',flexWrap:'wrap'}},
+          React.createElement('span', null, 'Gini 0 = keine Fl\u00e4che (gleich)'),
+          React.createElement('span', null, 'Gini 1 = max. Fl\u00e4che (ungleich)')
+        )
+      );
+    }
+
+    function VisSechseckMini() {
+      const ziele = ['Wachstum','Vollbe-\nsch\u00e4ftigung','Preis-\nstabilit\u00e4t','Au\u00dfenwirt.\nGleichgew.','Gerechte\nVerteilung','Umwelt-\nschutz'];
+      const cx = 150, cy = 130, r = 90, nr = 30;
+      const konfIdx = [[0,5],[1,2],[4,0]];
+      const pos = ziele.map(function(_,i){ var a = (i/6)*2*Math.PI - Math.PI/2; return {x: cx + r*Math.cos(a), y: cy + r*Math.sin(a)}; });
+      var elems = [];
+      // Hexagon outline
+      var pts = pos.map(function(p){ return p.x+','+p.y; }).join(' ');
+      elems.push(React.createElement('polygon', {key:'hex', points:pts, fill:'rgba(59,130,246,0.04)', stroke:'#3b82f6', strokeWidth:1.5}));
+      // Conflict lines (dashed red)
+      konfIdx.forEach(function(pair, ki){
+        var a=pos[pair[0]], b=pos[pair[1]];
+        elems.push(React.createElement('line', {key:'k'+ki, x1:a.x, y1:a.y, x2:b.x, y2:b.y, stroke:'#ef4444', strokeWidth:1.5, strokeDasharray:'6,4', opacity:0.6}));
+      });
+      // Nodes
+      var colors = ['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#06b6d4'];
+      ziele.forEach(function(z,i){
+        var p = pos[i];
+        elems.push(React.createElement('circle', {key:'c'+i, cx:p.x, cy:p.y, r:nr, fill:colors[i]+'15', stroke:colors[i], strokeWidth:2}));
+        var lines = z.split('\n');
+        elems.push(React.createElement('text', {key:'t'+i, x:p.x, y:p.y, textAnchor:'middle', dominantBaseline:'central', fontSize:8, fontWeight:600, fill:colors[i]},
+          lines.map(function(l,li){ return React.createElement('tspan', {key:li, x:p.x, dy: li===0 ? (lines.length>1 ? -5 : 0) : 11}, l); })
+        ));
+      });
+      return React.createElement('div', {style:{textAlign:'center'}},
+        React.createElement('svg', {viewBox:'0 0 300 270', style:{width:'100%', maxWidth:320}}, elems),
+        React.createElement('div', {style:{display:'flex', justifyContent:'center', gap:'1.25rem', marginTop:'0.5rem', fontSize:'0.8rem', flexWrap:'wrap'}},
+          React.createElement('span', {style:{display:'flex', alignItems:'center', gap:'0.3rem'}},
+            React.createElement('span', {style:{display:'inline-block', width:20, height:2, background:'#3b82f6', borderRadius:1}}),
+            ' Ziel'
+          ),
+          React.createElement('span', {style:{display:'flex', alignItems:'center', gap:'0.3rem'}},
+            React.createElement('span', {style:{display:'inline-block', width:20, height:0, borderTop:'2px dashed #ef4444'}}),
+            ' Zielkonflikt'
+          )
+        )
+      );
+    }
+
+    function VisBeispielRechnung() {
+      return React.createElement('div', null,
+        React.createElement('p', {style:{fontSize:'0.88rem',marginBottom:'0.75rem'}},
+          React.createElement('strong', null, 'Beispiel: '), 'Du hast 4 Stunden. Option A: Lernen (gute Note). Option B: Jobben (40 \u20ac).'),
+        React.createElement('div', {style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.5rem',marginBottom:'0.75rem'}},
+          React.createElement('div', {style:{padding:'0.75rem',borderRadius:'10px',background:'rgba(59,130,246,0.06)',border:'1px solid rgba(59,130,246,0.15)',textAlign:'center'}},
+            React.createElement('div', {style:{fontWeight:700,color:'#3b82f6',marginBottom:'0.25rem'}}, 'W\u00e4hlst: Lernen'),
+            React.createElement('div', {style:{fontSize:'0.82rem',color:'var(--text-muted)'}}, 'OK = 40 \u20ac (entgangener Verdienst)')
+          ),
+          React.createElement('div', {style:{padding:'0.75rem',borderRadius:'10px',background:'rgba(16,185,129,0.06)',border:'1px solid rgba(16,185,129,0.15)',textAlign:'center'}},
+            React.createElement('div', {style:{fontWeight:700,color:'#10b981',marginBottom:'0.25rem'}}, 'W\u00e4hlst: Jobben'),
+            React.createElement('div', {style:{fontSize:'0.82rem',color:'var(--text-muted)'}}, 'OK = gute Note (entgangenes Lernen)')
+          )
+        ),
+        React.createElement('div', {style:{padding:'0.6rem 0.85rem',borderRadius:'8px',background:'rgba(139,92,246,0.06)',fontSize:'0.82rem',textAlign:'center'}},
+          React.createElement('strong', null, 'Merke: '), 'OK = Nutzen der BESTEN nicht gew\u00e4hlten Alternative')
+      );
+    }
+
+    function VisFuenfPrinzipien() {
+      const p = [
+        {n:'Sozialprinzip',d:'Soziale Sicherung',c:'#ef4444'},
+        {n:'Wettbewerbsprinzip',d:'Funktionierender Wettbewerb',c:'#3b82f6'},
+        {n:'Marktkonformit\u00e4t',d:'Eingriffe st\u00f6ren Preise nicht',c:'#10b981'},
+        {n:'Eigentumsprinzip',d:'Privateigentum + Sozialbindung',c:'#f59e0b'},
+        {n:'Haftungsprinzip',d:'Wer entscheidet, haftet',c:'#8b5cf6'},
+      ];
+      return React.createElement('div', {style:{display:'flex',flexDirection:'column',gap:'0.4rem'}},
+        p.map((x,i) => React.createElement('div', {key:i, style:{display:'flex',alignItems:'center',gap:'0.6rem',padding:'0.6rem 0.85rem',borderRadius:'10px',background:x.c+'0a',borderLeft:'4px solid '+x.c}},
+          React.createElement('div', {style:{width:28,height:28,borderRadius:'50%',background:x.c+'18',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'0.75rem',fontWeight:700,color:x.c,flexShrink:0}}, i+1),
+          React.createElement('div', null,
+            React.createElement('div', {style:{fontWeight:600,fontSize:'0.88rem',color:'var(--text)'}}, x.n),
+            React.createElement('div', {style:{fontSize:'0.78rem',color:'var(--text-muted)'}}, x.d)
+          )
+        ))
+      );
+    }
+
+    function VisSpirale() {
+      const steps = ['Staat A r\u00fcstet auf','Staat B f\u00fchlt sich bedroht','Staat B r\u00fcstet auf','Staat A f\u00fchlt sich bedroht'];
+      const colors = ['#3b82f6','#ef4444','#ef4444','#3b82f6'];
+      return React.createElement('div', {style:{display:'flex',flexDirection:'column',gap:'0.35rem',alignItems:'center'}},
+        steps.map((s,i) => React.createElement(React.Fragment, {key:i},
+          React.createElement('div', {style:{padding:'0.55rem 1.25rem',borderRadius:'10px',background:colors[i]+'10',border:'2px solid '+colors[i]+'30',fontWeight:600,fontSize:'0.88rem',color:colors[i],textAlign:'center',minWidth:200}}, s),
+          i < steps.length - 1 ? React.createElement('span', {style:{fontSize:'1.1rem',color:'#94a3b8'}}, '\u2193') : null
+        )),
+        React.createElement('div', {style:{marginTop:'0.25rem',fontSize:'0.82rem',color:'#94a3b8',fontWeight:600}}, '\u21bb endlose Spirale')
+      );
+    }
+
+    function VisVergleich() {
+      const l = ['Staatliche Akteure','Regul\u00e4re Armeen','Kriegserkl\u00e4rung','V\u00f6lkerrecht gilt','Territorialer Gewinn'];
+      const r = ['Private Akteure / Milizen','Irregul\u00e4re K\u00e4mpfer','Kein klarer Beginn','Entrechtlichung','\u00d6konomische Motive'];
+      return React.createElement('div', {style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.5rem'}},
+        React.createElement('div', null,
+          React.createElement('div', {style:{fontWeight:700,fontSize:'0.88rem',textAlign:'center',padding:'0.5rem',borderRadius:'10px 10px 0 0',background:'rgba(59,130,246,0.08)',color:'#3b82f6'}}, 'Alte Kriege'),
+          l.map((x,i) => React.createElement('div', {key:i, style:{padding:'0.45rem 0.65rem',fontSize:'0.82rem',borderBottom:'1px solid var(--border)'}}, x))
+        ),
+        React.createElement('div', null,
+          React.createElement('div', {style:{fontWeight:700,fontSize:'0.88rem',textAlign:'center',padding:'0.5rem',borderRadius:'10px 10px 0 0',background:'rgba(239,68,68,0.08)',color:'#ef4444'}}, 'Neue Kriege'),
+          r.map((x,i) => React.createElement('div', {key:i, style:{padding:'0.45rem 0.65rem',fontSize:'0.82rem',borderBottom:'1px solid var(--border)'}}, x))
+        )
+      );
+    }
+
+    function VisZweiLaenderTabelle() {
+      return React.createElement('div', null,
+        React.createElement('table', {style:{width:'100%',borderCollapse:'collapse',fontSize:'0.88rem',marginBottom:'0.75rem'}},
+          React.createElement('thead', null, React.createElement('tr', {style:{background:'rgba(59,130,246,0.06)'}},
+            React.createElement('th', {style:{padding:'0.6rem',borderBottom:'2px solid var(--border)',textAlign:'left'}}, ''),
+            React.createElement('th', {style:{padding:'0.6rem',borderBottom:'2px solid var(--border)',textAlign:'center'}}, 'Wein (Std.)'),
+            React.createElement('th', {style:{padding:'0.6rem',borderBottom:'2px solid var(--border)',textAlign:'center'}}, 'Tuch (Std.)'),
+            React.createElement('th', {style:{padding:'0.6rem',borderBottom:'2px solid var(--border)',textAlign:'center',color:'#8b5cf6',fontWeight:700}}, 'OK Wein')
+          )),
+          React.createElement('tbody', null,
+            React.createElement('tr', null,
+              React.createElement('td', {style:{padding:'0.5rem',fontWeight:600}}, 'Portugal'),
+              React.createElement('td', {style:{textAlign:'center',padding:'0.5rem'}}, '80'),
+              React.createElement('td', {style:{textAlign:'center',padding:'0.5rem'}}, '90'),
+              React.createElement('td', {style:{textAlign:'center',padding:'0.5rem',color:'#8b5cf6',fontWeight:600}}, '80/90 = 0,89')
+            ),
+            React.createElement('tr', {style:{background:'rgba(0,0,0,0.02)'}},
+              React.createElement('td', {style:{padding:'0.5rem',fontWeight:600}}, 'England'),
+              React.createElement('td', {style:{textAlign:'center',padding:'0.5rem'}}, '120'),
+              React.createElement('td', {style:{textAlign:'center',padding:'0.5rem'}}, '100'),
+              React.createElement('td', {style:{textAlign:'center',padding:'0.5rem',color:'#8b5cf6',fontWeight:600}}, '120/100 = 1,20')
+            )
+          )
+        ),
+        React.createElement('div', {style:{padding:'0.65rem 0.85rem',borderRadius:'10px',background:'rgba(16,185,129,0.06)',border:'1px solid rgba(16,185,129,0.12)',fontSize:'0.85rem'}},
+          React.createElement('strong', {style:{color:'#059669'}}, 'Ergebnis: '),
+          'Portugal hat geringere OK bei Wein (0,89 < 1,20) \u2192 Portugal: Wein, England: Tuch. Beide profitieren!'
+        )
+      );
+    }
+
+    function VisWaage() {
+      const sides = [
+        {t:'Freihandel',c:'#059669',bg:'rgba(16,185,129,0.06)',b:'rgba(16,185,129,0.15)', pro:['Wohlstand','Niedrige Preise','Spezialisierung'],con:['Jobverluste','Abh\u00e4ngigkeiten']},
+        {t:'Protektionismus',c:'#dc2626',bg:'rgba(239,68,68,0.06)',b:'rgba(239,68,68,0.15)', pro:['Schutz v. Jobs','Infant Industry','Souver\u00e4nit\u00e4t'],con:['H\u00f6here Preise','Handelskriege']}
+      ];
+      return React.createElement('div', {style:{display:'grid',gridTemplateColumns:'1fr auto 1fr',gap:'0.5rem',alignItems:'start'}},
+        React.createElement('div', {style:{padding:'0.75rem',borderRadius:'12px',background:sides[0].bg,border:'1px solid '+sides[0].b}},
+          React.createElement('div', {style:{fontWeight:700,fontSize:'0.9rem',color:sides[0].c,marginBottom:'0.5rem',textAlign:'center'}}, sides[0].t),
+          React.createElement('div', {style:{fontSize:'0.82rem'}},
+            sides[0].pro.map((x,i) => React.createElement('div', {key:'p'+i,style:{color:'#059669',marginBottom:'0.2rem'}}, '+ '+x)),
+            sides[0].con.map((x,i) => React.createElement('div', {key:'c'+i,style:{color:'#ef4444',marginBottom:'0.2rem'}}, '\u2212 '+x))
+          )
+        ),
+        React.createElement('div', {style:{display:'flex',alignItems:'center',justifyContent:'center',fontSize:'1.5rem',padding:'1rem 0',color:'var(--text-muted)'}}, '\u2696\ufe0f'),
+        React.createElement('div', {style:{padding:'0.75rem',borderRadius:'12px',background:sides[1].bg,border:'1px solid '+sides[1].b}},
+          React.createElement('div', {style:{fontWeight:700,fontSize:'0.9rem',color:sides[1].c,marginBottom:'0.5rem',textAlign:'center'}}, sides[1].t),
+          React.createElement('div', {style:{fontSize:'0.82rem'}},
+            sides[1].pro.map((x,i) => React.createElement('div', {key:'p'+i,style:{color:'#059669',marginBottom:'0.2rem'}}, '+ '+x)),
+            sides[1].con.map((x,i) => React.createElement('div', {key:'c'+i,style:{color:'#ef4444',marginBottom:'0.2rem'}}, '\u2212 '+x))
+          )
+        )
+      );
+    }
+
+    function VisKette() {
+      const steps = ['Zoll / Quote','Import wird teurer','Heimische profitieren','Verbraucher zahlen mehr','Weniger Wettbewerb'];
+      return React.createElement('div', {style:{overflowX:'auto'}},
+        React.createElement('div', {style:{display:'flex',alignItems:'center',gap:'0.35rem',minWidth:460,justifyContent:'center',padding:'0.5rem 0'}},
+          steps.map((s,i) => React.createElement(React.Fragment, {key:i},
+            React.createElement('div', {style:{padding:'0.6rem 0.5rem',borderRadius:'10px',background:i===0||i===steps.length-1?'rgba(239,68,68,0.08)':'rgba(59,130,246,0.06)',border:'1px solid '+(i===0||i===steps.length-1?'rgba(239,68,68,0.2)':'rgba(59,130,246,0.15)'),textAlign:'center',fontSize:'0.78rem',fontWeight:600,minWidth:75,lineHeight:'1.35'}}, s),
+            i < steps.length - 1 ? React.createElement('span', {style:{fontSize:'1rem',color:'#94a3b8',flexShrink:0}}, '\u2192') : null
+          ))
+        )
+      );
+    }
+
+    const VIS_RENDERERS = {
+      'drei-saeulen': VisDreiSaeulen, 'kreislauf': VisKreislauf, 'lorenzkurve': VisLorenzkurve,
+      'sechseck-mini': VisSechseckMini, 'beispiel-rechnung': VisBeispielRechnung,
+      'fuenf-prinzipien': VisFuenfPrinzipien, 'spirale': VisSpirale, 'vergleich': VisVergleich,
+      'zwei-laender-tabelle': VisZweiLaenderTabelle, 'waage': VisWaage, 'kette': VisKette,
+    };
+
+    function BegriffModal({ begriffKey, onClose }) {
+      const data = BEGRIFFE_VIS[begriffKey];
+      if (!data) return null;
+      const VisComp = VIS_RENDERERS[data.vis];
+      React.useEffect(() => {
+        const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+        document.addEventListener('keydown', onKey);
+        return () => document.removeEventListener('keydown', onKey);
+      }, []);
+      return React.createElement('div', {className:'begriffe-modal-overlay', onClick:(e) => { if (e.target === e.currentTarget) onClose(); }},
+        React.createElement('div', {className:'begriffe-modal', onClick:(e) => e.stopPropagation()},
+          React.createElement('button', {type:'button', className:'begriffe-modal-close', onClick:onClose}, '\u2715'),
+          React.createElement('h3', null, data.title),
+          React.createElement('p', {className:'bm-kurz'}, data.kurz),
+          VisComp ? React.createElement('div', {className:'bm-vis'}, React.createElement(VisComp)) : null,
+          data.tipp ? React.createElement('div', {className:'bm-tipp'}, React.createElement('strong', null, 'Pr\u00fcfungstipp: '), data.tipp) : null
+        )
+      );
+    }
+
     function FullContentSection({ module, content, onVisited, hasNext, nextLabel, onNext, moduleKey }) {
+      const [visBegriff, setVisBegriff] = useState(null);
       React.useEffect(() => { onVisited && onVisited(); }, []);
       if (!content) return null;
       const { curriculum, title, intro, goals, cards, glossary, comparison, example, widgets, persons, aktualitaet, pruefung, politikzyklus } = content;
@@ -3235,11 +4395,15 @@
               <div className="content-block-title"><span className="icon-wrap">📖</span> Schlüsselbegriffe</div>
               <table className="glossary-table">
                 <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
-                <tbody>{glossary.map((g, i) => <tr key={i}><td>{g.term}</td><td>{g.def}</td></tr>)}</tbody>
+                <tbody>{glossary.map((g, i) => {
+                  const bk = begriffKeyFromTerm(g.term);
+                  return <tr key={i}><td>{bk ? <button type="button" className="glossar-vis-link" onClick={() => setVisBegriff(bk)}>{g.term}<span className="vis-hint">i</span></button> : g.term}</td><td>{g.def}</td></tr>;
+                })}</tbody>
               </table>
             </div>
           )}
           <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+          {visBegriff && <BegriffModal begriffKey={visBegriff} onClose={() => setVisBegriff(null)} />}
         </div>
       );
     }
@@ -3333,6 +4497,7 @@
     }
 
     function TheoriesSection({ onVisited, hasNext, nextLabel, onNext, moduleKey }) {
+      const [visBegriff, setVisBegriff] = useState(null);
       React.useEffect(() => { onVisited && onVisited('theories'); }, []);
       const goals = [
         'Absolute und komparative Kostenvorteile (Smith, Ricardo) erklären und unterscheiden.',
@@ -3403,8 +4568,8 @@
           <table className="glossary-table">
             <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
             <tbody>
-              <tr><td>Opportunitätskosten</td><td>Verzicht auf die nächstbeste Alternative</td></tr>
-              <tr><td>Komparative Kostenvorteile</td><td>Spezialisierung auf Güter mit den geringsten Opportunitätskosten</td></tr>
+              <tr><td><button type="button" className="glossar-vis-link" onClick={() => setVisBegriff('opportunitätskosten')}>Opportunitätskosten<span className="vis-hint">i</span></button></td><td>Verzicht auf die nächstbeste Alternative</td></tr>
+              <tr><td><button type="button" className="glossar-vis-link" onClick={() => setVisBegriff('komparative-kostenvorteile')}>Komparative Kostenvorteile<span className="vis-hint">i</span></button></td><td>Spezialisierung auf Güter mit den geringsten Opportunitätskosten</td></tr>
             </tbody>
           </table>
           <PruefungsfragenBlock items={[
@@ -3412,6 +4577,7 @@
               { q: 'Wer entwickelte die Theorie der komparativen Kostenvorteile?', a: 'David Ricardo („Principles of Political Economy“, 1817).' },
             ]} />
           <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+          {visBegriff && <BegriffModal begriffKey={visBegriff} onClose={() => setVisBegriff(null)} />}
         </div>
       );
     }
@@ -3644,12 +4810,14 @@
       );
     }
 
-    function FlashcardsSection({ onVisited, hasNext, nextLabel, onNext }) {
+    function FlashcardsSection({ onVisited, hasNext, nextLabel, onNext, flashcardData, flashcardLabel }) {
+      const allTerms = flashcardData || FLASHCARD_TERMS;
+      const fcLabel = flashcardLabel || '13.2';
       React.useEffect(() => { onVisited && onVisited('flashcards'); }, []);
       const [index, setIndex] = useState(0);
       const [flipped, setFlipped] = useState(false);
-      const [shuffled, setShuffled] = useState(FLASHCARD_TERMS.map((_, i) => i));
-      const terms = shuffled.map(i => FLASHCARD_TERMS[i]);
+      const [shuffled, setShuffled] = useState(allTerms.map((_, i) => i));
+      const terms = shuffled.map(i => allTerms[i]);
       const current = terms[index];
       const next = () => { setFlipped(false); setIndex((index + 1) % terms.length); };
       const prev = () => { setFlipped(false); setIndex((index - 1 + terms.length) % terms.length); };
@@ -3661,7 +4829,7 @@
       };
       return (
         <div className="content">
-          <div className="curriculum-badge">Kerncurriculum 13.2 · Niedersachsen</div>
+          <div className="curriculum-badge">Kerncurriculum {fcLabel} · Niedersachsen</div>
           <h2 className="section-title">Karteikarten</h2>
           <p className="section-intro">
             Klicke auf die Karte, um die Definition zu sehen. Nutze die Pfeile für die nächste/vorherige Karte oder „Zufall“, um die Reihenfolge zu mischen.
@@ -3824,6 +4992,487 @@
         explanation: 'Erziehungszoll: zeitweiliger Schutz junger heimischer Industrien, bis sie international wettbewerbsfähig sind („infant industry“-Argument).'
       }
     ];
+
+    const WAHR_FALSCH_12_1 = [
+      { aussage: 'Der Bundestag wählt den/die Bundeskanzler:in.', wahr: true, erklaerung: 'Korrekt – auf Vorschlag des Bundespräsidenten.' },
+      { aussage: 'Der Bundesrat vertritt die Interessen der Bürger:innen direkt.', wahr: false, erklaerung: 'Falsch – der Bundesrat vertritt die Länder, nicht die Bürger direkt.' },
+      { aussage: 'Demonstrationen sind eine konventionelle Form der Partizipation.', wahr: false, erklaerung: 'Falsch – Demonstrationen gelten als unkonventionell. Konventionell = Wahlen, Parteimitgliedschaft.' },
+      { aussage: 'Rousseau steht für die Idee der Volkssouveränität (volonté générale).', wahr: true, erklaerung: 'Korrekt – Rousseaus Gemeinwille ist zentral für partizipative Demokratietheorien.' },
+      { aussage: 'Das Bundesverfassungsgericht sitzt in Berlin.', wahr: false, erklaerung: 'Falsch – es sitzt in Karlsruhe.' },
+      { aussage: 'John Stuart Mill ist Vertreter der repräsentativen Demokratie.', wahr: true, erklaerung: 'Korrekt – Mill betont kompetente Abgeordnete und Minderheitenschutz.' },
+    ];
+
+    const WAHR_FALSCH_12_2 = [
+      { aussage: 'Alfred Müller-Armack prägte den Begriff „Soziale Marktwirtschaft".', wahr: true, erklaerung: 'Korrekt – Ludwig Erhard setzte sie in der Praxis um.' },
+      { aussage: 'Das Haftungsprinzip besagt, dass der Staat für alle Verluste haftet.', wahr: false, erklaerung: 'Falsch – wer entscheidet, haftet selbst für die Folgen.' },
+      { aussage: 'Ein Gini-Koeffizient von 0 bedeutet maximale Ungleichheit.', wahr: false, erklaerung: 'Falsch – 0 = völlige Gleichheit, 1 = maximale Ungleichheit.' },
+      { aussage: 'Die EZB hat das Hauptziel der Preisniveaustabilität.', wahr: true, erklaerung: 'Korrekt – Inflationsziel nahe 2 %.' },
+      { aussage: 'Öffentliche Güter sind rival und ausschließbar.', wahr: false, erklaerung: 'Falsch – öffentliche Güter sind NICHT rival und NICHT ausschließbar.' },
+      { aussage: 'Keynes fordert in Krisen mehr Staatsausgaben.', wahr: true, erklaerung: 'Korrekt – nachfrageorientierte Politik: Staat stützt die Nachfrage.' },
+    ];
+
+    const WAHR_FALSCH_13_1 = [
+      { aussage: 'Art. 5 des NATO-Vertrags regelt den Bündnisfall.', wahr: true, erklaerung: 'Korrekt – Angriff auf einen = Angriff auf alle.' },
+      { aussage: 'Die Bundeswehr kann ohne Zustimmung des Bundestags eingesetzt werden.', wahr: false, erklaerung: 'Falsch – Parlamentsarmee: Einsätze nur mit Zustimmung des Bundestags.' },
+      { aussage: '"Neue Kriege" zeichnen sich durch Privatisierung und Ökonomisierung der Gewalt aus.', wahr: true, erklaerung: 'Korrekt – plus Entrechtlichung (Gewalt gegen Zivilisten).' },
+      { aussage: 'GASP steht für „Grundgesetz-Ausführungs-Sicherheits-Protokoll".', wahr: false, erklaerung: 'Falsch – GASP = Gemeinsame Außen- und Sicherheitspolitik der EU.' },
+      { aussage: 'Mark Rutte ist NATO-Generalsekretär (Stand 2026).', wahr: true, erklaerung: 'Korrekt – seit Oktober 2024, Nachfolger von Stoltenberg.' },
+      { aussage: 'Das Sicherheitsdilemma beschreibt, dass Aufrüstung als Bedrohung wahrgenommen wird.', wahr: true, erklaerung: 'Korrekt – kann zur Rüstungsspirale führen.' },
+    ];
+
+    const WAHR_FALSCH_13_2 = [
+      { aussage: 'FDI bedeutet kurzfristige Spekulation an Devisenmärkten.', wahr: false, erklaerung: 'Falsch – FDI = langfristige Auslandsinvestition mit Kontrolle (mind. 10 %).' },
+      { aussage: 'Ricardo zeigt: Handel lohnt auch ohne absolute Kostenvorteile.', wahr: true, erklaerung: 'Korrekt – komparative Kostenvorteile: Opportunitätskosten entscheiden.' },
+      { aussage: 'Eine Importquote ist ein tarifäres Handelshemmnis.', wahr: false, erklaerung: 'Falsch – Importquoten sind nichttarifär. Zölle sind tarifär.' },
+      { aussage: 'Meistbegünstigung bedeutet: Handelserleichterungen gelten für alle WTO-Mitglieder gleich.', wahr: true, erklaerung: 'Korrekt – keine Diskriminierung zwischen Mitgliedern.' },
+      { aussage: 'Die WTO hat derzeit keine Probleme mit ihrer Streitschlichtung.', wahr: false, erklaerung: 'Falsch – die USA blockieren seit 2019 die Berufungsinstanz.' },
+      { aussage: 'Intraindustrieller Handel bedeutet: gleiche Branche, verschiedene Produkte.', wahr: true, erklaerung: 'Korrekt – z. B. Deutschland exportiert und importiert Autos.' },
+    ];
+
+    const WAHR_FALSCH_MAP = {
+      'WAHR_FALSCH_12_1': WAHR_FALSCH_12_1,
+      'WAHR_FALSCH_12_2': WAHR_FALSCH_12_2,
+      'WAHR_FALSCH_13_1': WAHR_FALSCH_13_1,
+      'WAHR_FALSCH_13_2': WAHR_FALSCH_13_2,
+    };
+
+    function WahrFalschSection({ hasNext, nextLabel, onNext, wahrFalschData, wahrFalschLabel }) {
+      const items = (wahrFalschData && WAHR_FALSCH_MAP[wahrFalschData]) || WAHR_FALSCH_12_1;
+      const label = wahrFalschLabel || 'Schnellrunde';
+      const [current, setCurrent] = useState(0);
+      const [answers, setAnswers] = useState({});
+      const [showResult, setShowResult] = useState(false);
+
+      const item = items[current];
+      const answered = answers[current] !== undefined;
+      const isCorrect = answered && answers[current] === item?.wahr;
+      const allDone = Object.keys(answers).length === items.length;
+      const score = items.filter((it, i) => answers[i] === it.wahr).length;
+
+      const handleAnswer = (val) => {
+        if (answered) return;
+        setAnswers(prev => ({ ...prev, [current]: val }));
+      };
+      const next = () => {
+        if (current + 1 < items.length) setCurrent(current + 1);
+        else setShowResult(true);
+      };
+      const restart = () => { setCurrent(0); setAnswers({}); setShowResult(false); };
+
+      if (showResult) {
+        return (
+          <div className="content">
+            <h2 className="section-title">Wahr oder Falsch: Ergebnis</h2>
+            <div className="quiz-score"><div className="number">{score} / {items.length}</div><div className="label">richtig</div></div>
+            <button type="button" className="primary" style={{ marginTop: '1.5rem' }} onClick={restart}>Nochmal spielen</button>
+            <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+          </div>
+        );
+      }
+
+      return (
+        <div className="content">
+          <div className="curriculum-badge">{label}</div>
+          <h2 className="section-title">Wahr oder Falsch?</h2>
+          <p className="section-intro">Entscheide schnell: Stimmt die Aussage oder nicht?</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>Frage {current + 1} von {items.length}</p>
+          <div className="quiz-card">
+            <h3 style={{ fontSize: '1.05rem', lineHeight: 1.5 }}>„{item.aussage}"</h3>
+            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
+              <button type="button" onClick={() => handleAnswer(true)}
+                style={{ flex: 1, padding: '0.85rem', borderRadius: '12px', border: '2px solid ' + (answered ? (item.wahr ? '#10b981' : (answers[current] === true ? '#ef4444' : 'var(--border)')) : 'var(--border)'), background: answered ? (item.wahr ? 'rgba(16,185,129,0.1)' : (answers[current] === true ? 'rgba(239,68,68,0.1)' : 'var(--surface)')) : 'var(--surface)', cursor: answered ? 'default' : 'pointer', fontFamily: 'inherit', fontSize: '1rem', fontWeight: 600, color: 'var(--text)', transition: 'all 0.2s' }}>
+                ✓ Wahr
+              </button>
+              <button type="button" onClick={() => handleAnswer(false)}
+                style={{ flex: 1, padding: '0.85rem', borderRadius: '12px', border: '2px solid ' + (answered ? (!item.wahr ? '#10b981' : (answers[current] === false ? '#ef4444' : 'var(--border)')) : 'var(--border)'), background: answered ? (!item.wahr ? 'rgba(16,185,129,0.1)' : (answers[current] === false ? 'rgba(239,68,68,0.1)' : 'var(--surface)')) : 'var(--surface)', cursor: answered ? 'default' : 'pointer', fontFamily: 'inherit', fontSize: '1rem', fontWeight: 600, color: 'var(--text)', transition: 'all 0.2s' }}>
+                ✗ Falsch
+              </button>
+            </div>
+            {answered && (
+              <div className="quiz-explanation">
+                <strong>{isCorrect ? 'Richtig!' : 'Falsch!'}</strong> {item.erklaerung}
+              </div>
+            )}
+            {answered && (
+              <button type="button" className="primary" style={{ marginTop: '1rem' }} onClick={next}>
+                {current + 1 < items.length ? 'Nächste Aussage' : 'Zum Ergebnis'}
+              </button>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    const OPERATOREN = [
+      { op: 'Nennen / Angeben', afb: 'I', desc: 'Informationen ohne Erläuterung aufzählen.', beispiel: 'Nenne drei Prinzipien der SMW.' },
+      { op: 'Beschreiben', afb: 'I', desc: 'Sachverhalte in eigenen Worten strukturiert wiedergeben.', beispiel: 'Beschreibe den Politikzyklus.' },
+      { op: 'Darstellen', afb: 'I–II', desc: 'Sachverhalte strukturiert und zusammenhängend wiedergeben.', beispiel: 'Stelle die Aufgaben des Bundestags dar.' },
+      { op: 'Erklären', afb: 'II', desc: 'Sachverhalte durch Ursachen und Zusammenhänge verständlich machen.', beispiel: 'Erkläre die Wirkungskette eines Schutzzolls.' },
+      { op: 'Erläutern', afb: 'II', desc: 'Sachverhalte mit zusätzlichen Informationen und Beispielen veranschaulichen.', beispiel: 'Erläutere das Prinzip der komparativen Kostenvorteile.' },
+      { op: 'Analysieren', afb: 'II–III', desc: 'Material systematisch untersuchen und Zusammenhänge herausarbeiten.', beispiel: 'Analysiere die Karikatur zur Globalisierung.' },
+      { op: 'Vergleichen', afb: 'II', desc: 'Gemeinsamkeiten und Unterschiede kriterienorientiert herausarbeiten.', beispiel: 'Vergleiche Freihandel und Protektionismus.' },
+      { op: 'Beurteilen', afb: 'III', desc: 'Mit Sachkriterien zu einem begründeten Urteil kommen.', beispiel: 'Beurteile die Wirksamkeit der WTO.' },
+      { op: 'Bewerten', afb: 'III', desc: 'Mit eigenen Wertmaßstäben Stellung nehmen (persönliches Urteil).', beispiel: 'Bewerte die Trump-Zölle aus Verbrauchersicht.' },
+      { op: 'Erörtern', afb: 'III', desc: 'These/Problem von verschiedenen Seiten beleuchten und zu einem Ergebnis kommen.', beispiel: 'Erörtere: Ist Protektionismus in Krisenzeiten gerechtfertigt?' },
+      { op: 'Gestalten', afb: 'III', desc: 'Kreativ produzieren (Rede, Brief, Kommentar etc.).', beispiel: 'Verfasse eine Stellungnahme zum EU-Mercosur-Abkommen.' },
+    ];
+
+    function OperatorenGlossar({ hasNext, nextLabel, onNext }) {
+      const [active, setActive] = useState(null);
+      const afbColors = { 'I': '#3b82f6', 'I–II': '#8b5cf6', 'II': '#f59e0b', 'II–III': '#ef4444', 'III': '#dc2626' };
+      return (
+        <div className="content">
+          <div className="curriculum-badge">Abitur Politik-Wirtschaft · Niedersachsen</div>
+          <h2 className="section-title">Operatoren-Glossar</h2>
+          <p className="section-intro">
+            Operatoren sagen dir, WAS du in der Klausur tun sollst. AFB I = Wissen wiedergeben, AFB II = Zusammenhänge herstellen, AFB III = eigenes Urteil.
+          </p>
+          <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+            {['I', 'II', 'III'].map(afb => (
+              <span key={afb} style={{ padding: '0.3rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 700, background: afbColors[afb] + '18', color: afbColors[afb], border: '1px solid ' + afbColors[afb] + '30' }}>AFB {afb}</span>
+            ))}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%', maxWidth: '720px', margin: '0 auto' }}>
+            {OPERATOREN.map((op, i) => (
+              <button key={i} type="button" onClick={() => setActive(active === i ? null : i)}
+                style={{ textAlign: 'left', padding: '0.85rem 1rem', borderRadius: '12px', border: '1px solid var(--border)', background: active === i ? 'rgba(26,115,232,0.06)' : 'var(--surface)', cursor: 'pointer', fontFamily: 'inherit', transition: 'background 0.2s', boxShadow: 'var(--shadow)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{ padding: '0.15rem 0.45rem', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 700, background: (afbColors[op.afb] || '#666') + '18', color: afbColors[op.afb] || '#666' }}>AFB {op.afb}</span>
+                    <strong style={{ fontSize: '0.95rem' }}>{op.op}</strong>
+                  </div>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{active === i ? '▲' : '▼'}</span>
+                </div>
+                {active === i && (
+                  <div style={{ marginTop: '0.6rem', fontSize: '0.88rem', lineHeight: '1.55' }}>
+                    <p style={{ margin: '0 0 0.4rem', color: 'var(--text)' }}>{op.desc}</p>
+                    <p style={{ margin: 0, padding: '0.5rem', borderRadius: '8px', background: 'rgba(26,115,232,0.06)', borderLeft: '3px solid var(--primary)', fontSize: '0.85rem', color: 'var(--text-muted)' }}><strong>Beispiel:</strong> {op.beispiel}</p>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+          <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+        </div>
+      );
+    }
+
+    function Lernplakat121({ hasNext, nextLabel, onNext }) {
+      const [expanded, setExpanded] = useState(null);
+      const toggle = (id) => setExpanded(prev => prev === id ? null : id);
+      return (
+        <div className="content" style={{ maxWidth: '1100px' }}>
+          <div className="lernplakat">
+            <div className="lernplakat-hero">
+              <div className="lernplakat-hero-inner">
+                <div className="lp-badge">Kerncurriculum 12.1 · Niedersachsen · Abitur</div>
+                <h2>Politische<br/><span>Partizipation</span></h2>
+                <p className="lp-sub">Formen und Funktionen von Partizipation, Verfassungsorgane, politische Akteure und Demokratietheorien.</p>
+                <div className="lp-stats">
+                  <div className="lp-stat"><span className="lp-stat-num">4</span><span className="lp-stat-label">Themenfelder</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">5</span><span className="lp-stat-label">Verfassungsorgane</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">2</span><span className="lp-stat-label">Demokratietheorien</span></div>
+                </div>
+              </div>
+            </div>
+            <div className="lp-grid">
+              <div className="lp-tile" data-color="blue">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🗳️</div><div><div className="lp-tile-title">Partizipation</div><div className="lp-tile-subtitle">Formen & Funktionen</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}><span className="lp-tile-tag">konventionell</span><span className="lp-tile-tag">unkonventionell</span><span className="lp-tile-tag">Funktionen</span></div>
+                  <ul>
+                    <li><strong>Konventionell:</strong> Wahlen, Parteimitgliedschaft, Petition</li>
+                    <li><strong>Unkonventionell:</strong> Demo, Boykott, Bürgerinitiative, Besetzung</li>
+                    <li><strong>Funktionen:</strong> Artikulation, Integration, Repräsentation, Kontrolle</li>
+                  </ul>
+                  {expanded === 'part' && <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(59,130,246,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}><strong>Trend 2026:</strong> Sinkende Wahlbeteiligung bei jungen Menschen, gleichzeitig mehr unkonventionelle Partizipation (Fridays for Future, Online-Petitionen). Für die Prüfung: Funktionen der Partizipation erklären können.</div>}
+                  <button onClick={() => toggle('part')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#2563eb', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>{expanded === 'part' ? '▲ weniger' : '▼ Aktualität 2026'}</button>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="green">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🏛️</div><div><div className="lp-tile-title">Verfassungsorgane</div><div className="lp-tile-subtitle">Im politischen Prozess</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}><span className="lp-tile-tag">Bundestag</span><span className="lp-tile-tag">Bundesrat</span><span className="lp-tile-tag">Regierung</span><span className="lp-tile-tag">BVerfG</span><span className="lp-tile-tag">Präsident</span></div>
+                  <ul>
+                    <li><strong>Bundestag</strong> – Legislative, wählt Kanzler:in, kontrolliert Regierung</li>
+                    <li><strong>Bundesrat</strong> – Länderbeteiligung, Zustimmungsgesetze</li>
+                    <li><strong>Bundesregierung</strong> – Exekutive, Kanzlerprinzip, Ressortprinzip</li>
+                    <li><strong>BVerfG</strong> – Hüter der Verfassung, Normenkontrolle</li>
+                    <li><strong>Bundespräsident:in</strong> – Repräsentation, Prüfungsrecht</li>
+                  </ul>
+                  {expanded === 'verf' && <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(16,185,129,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}><strong>Stand 2026:</strong> Bundeskanzler Friedrich Merz (CDU), Bundespräsident Frank-Walter Steinmeier, BVerfG-Präsidentin Stefanie Schiedermair. Parlamentsvorbehalt: Bundeswehreinsätze nur mit Zustimmung des Bundestags.</div>}
+                  <button onClick={() => toggle('verf')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#059669', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>{expanded === 'verf' ? '▲ weniger' : '▼ Personen 2026'}</button>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="orange">
+                <div className="lp-tile-header"><div className="lp-tile-icon">👥</div><div><div className="lp-tile-title">Politische Akteure</div><div className="lp-tile-subtitle">Bürger, Parteien, Verbände</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}><span className="lp-tile-tag">Parteien</span><span className="lp-tile-tag">Verbände</span><span className="lp-tile-tag">Medien</span><span className="lp-tile-tag">NGOs</span></div>
+                  <ul>
+                    <li><strong>Parteien</strong> – Programmformulierung, Personalrekrutierung, Interessenartikulation</li>
+                    <li><strong>Verbände</strong> – Lobbyismus, organisierte Interessen</li>
+                    <li><strong>Medien</strong> – Vierte Gewalt, Informations- und Kontrollfunktion</li>
+                    <li><strong>Bürgerinitiativen</strong> – Loser Zusammenschluss für konkretes Anliegen</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="purple">
+                <div className="lp-tile-header"><div className="lp-tile-icon">📐</div><div><div className="lp-tile-title">Demokratietheorien</div><div className="lp-tile-subtitle">Repräsentativ vs. Plebiszitär</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.5rem', marginBottom:'0.5rem'}}>
+                    <div style={{padding:'0.6rem', borderRadius:'10px', background:'rgba(139,92,246,0.06)', border:'1px solid rgba(139,92,246,0.12)'}}>
+                      <strong style={{fontSize:'0.82rem', color:'#7c3aed', display:'block', marginBottom:'0.2rem'}}>Repräsentativ (Mill)</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>Gewählte Abgeordnete, Minderheitenschutz, Kompetenz</span>
+                    </div>
+                    <div style={{padding:'0.6rem', borderRadius:'10px', background:'rgba(59,130,246,0.06)', border:'1px solid rgba(59,130,246,0.12)'}}>
+                      <strong style={{fontSize:'0.82rem', color:'#2563eb', display:'block', marginBottom:'0.2rem'}}>Plebiszitär (Rousseau)</strong>
+                      <span style={{fontSize:'0.78rem', color:'var(--text-muted)'}}>Volkssouveränität, Gemeinwille (volonté générale)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="lp-tile-persons">
+                  <div className="lp-person"><div className="lp-person-avatar">JM</div><div className="lp-person-info"><strong>John Stuart Mill</strong><span>1806–1873 · Repräsentative Demokratie</span></div></div>
+                  <div className="lp-person"><div className="lp-person-avatar">JR</div><div className="lp-person-info"><strong>Jean-Jacques Rousseau</strong><span>1712–1778 · Volonté générale</span></div></div>
+                </div>
+              </div>
+              <div className="lp-connections">
+                <h4>Zusammenhänge</h4>
+                <div className="lp-conn-list">
+                  <div className="lp-conn-item"><span>Partizipation</span><span className="arrow">→</span><span>legitimiert</span><span className="arrow">→</span><span>Verfassungsorgane</span></div>
+                  <div className="lp-conn-item"><span>Parteien + Verbände</span><span className="arrow">→</span><span>vermitteln zwischen Bürger und Staat</span></div>
+                  <div className="lp-conn-item"><span>Mill</span><span className="arrow">↔</span><span>Rousseau: Spannungsfeld repräsentativ vs. direkt</span></div>
+                  <div className="lp-conn-item"><span>Grundgesetz</span><span className="arrow">→</span><span>rahmt alles: Art. 20, 21, 38 GG</span></div>
+                </div>
+              </div>
+              <div className="lp-summary">
+                <h4>Schlüsselbegriffe für die Prüfung</h4>
+                <div className="lp-summary-grid">
+                  <div className="lp-summary-item"><strong>Volkssouveränität</strong><span>Alle Staatsgewalt geht vom Volke aus</span></div>
+                  <div className="lp-summary-item"><strong>Gewaltenteilung</strong><span>Legislative, Exekutive, Judikative</span></div>
+                  <div className="lp-summary-item"><strong>Parlamentsvorbehalt</strong><span>Bundeswehreinsätze nur mit Bundestag</span></div>
+                  <div className="lp-summary-item"><strong>Lobbyismus</strong><span>Einflussnahme organisierter Interessen</span></div>
+                  <div className="lp-summary-item"><strong>Politikzyklus</strong><span>Agenda → Formulierung → Entscheidung → Umsetzung → Evaluation</span></div>
+                  <div className="lp-summary-item"><strong>Volonté générale</strong><span>Rousseaus Gemeinwille des Volkes</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+        </div>
+      );
+    }
+
+    function Lernplakat122({ hasNext, nextLabel, onNext }) {
+      const [expanded, setExpanded] = useState(null);
+      const toggle = (id) => setExpanded(prev => prev === id ? null : id);
+      return (
+        <div className="content" style={{ maxWidth: '1100px' }}>
+          <div className="lernplakat">
+            <div className="lernplakat-hero">
+              <div className="lernplakat-hero-inner">
+                <div className="lp-badge">Kerncurriculum 12.2 · Niedersachsen · Abitur</div>
+                <h2>Soziale<br/><span>Marktwirtschaft</span></h2>
+                <p className="lp-sub">Prinzipien, Wirtschaftspolitik, Ungleichheit, Markt und Staat – alle prüfungsrelevanten Inhalte.</p>
+                <div className="lp-stats">
+                  <div className="lp-stat"><span className="lp-stat-num">6</span><span className="lp-stat-label">Themenfelder</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">6</span><span className="lp-stat-label">Sechseck-Ziele</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">5</span><span className="lp-stat-label">Prinzipien</span></div>
+                </div>
+              </div>
+            </div>
+            <div className="lp-grid">
+              <div className="lp-tile" data-color="blue">
+                <div className="lp-tile-header"><div className="lp-tile-icon">📊</div><div><div className="lp-tile-title">Ungleichheit & Verteilung</div><div className="lp-tile-subtitle">Einkommen, Vermögen, Gerechtigkeit</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}><span className="lp-tile-tag">Gini</span><span className="lp-tile-tag">Lorenzkurve</span><span className="lp-tile-tag">Umverteilung</span></div>
+                  <ul>
+                    <li><strong>Gini-Koeffizient</strong> – 0 = Gleichheit, 1 = maximale Ungleichheit</li>
+                    <li><strong>Lorenzkurve</strong> – grafische Darstellung der Verteilung</li>
+                    <li><strong>Transferleistungen</strong> – Kindergeld, BAföG, Wohngeld</li>
+                    <li><strong>Gerechtigkeitskonzepte</strong> – Leistungs- vs. Bedarfsgerechtigkeit</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="green">
+                <div className="lp-tile-header"><div className="lp-tile-icon">⚖️</div><div><div className="lp-tile-title">Prinzipien der SMW</div><div className="lp-tile-subtitle">5 Ordnungsprinzipien</div></div></div>
+                <div className="lp-tile-body">
+                  <ul>
+                    <li><strong>Sozialprinzip</strong> – Soziale Sicherung, Ausgleich</li>
+                    <li><strong>Wettbewerbsprinzip</strong> – Funktionierender Wettbewerb</li>
+                    <li><strong>Marktkonformität</strong> – Eingriffe stören Preismechanismus nicht</li>
+                    <li><strong>Eigentumsprinzip</strong> – Privateigentum mit Sozialbindung</li>
+                    <li><strong>Haftungsprinzip</strong> – Wer entscheidet, haftet</li>
+                  </ul>
+                </div>
+                <div className="lp-tile-persons">
+                  <div className="lp-person"><div className="lp-person-avatar">MA</div><div className="lp-person-info"><strong>Alfred Müller-Armack</strong><span>Prägte den Begriff „Soziale Marktwirtschaft"</span></div></div>
+                  <div className="lp-person"><div className="lp-person-avatar">LE</div><div className="lp-person-info"><strong>Ludwig Erhard</strong><span>Setzte die SMW in der Praxis um</span></div></div>
+                </div>
+              </div>
+              <div className="lp-tile full-width" data-color="orange">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🎯</div><div><div className="lp-tile-title">Magisches Sechseck</div><div className="lp-tile-subtitle">6 wirtschaftspolitische Ziele</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(140px, 1fr))', gap:'0.5rem', marginBottom:'0.5rem'}}>
+                    {['Wirtschaftswachstum', 'Vollbeschäftigung', 'Preisniveaustabilität', 'Außenwirtschaftl. Gleichgewicht', 'Gerechte Verteilung', 'Umweltschutz'].map((z, i) => (
+                      <div key={i} style={{padding:'0.5rem', borderRadius:'10px', background:'rgba(245,158,11,0.06)', textAlign:'center', fontSize:'0.82rem', fontWeight:600}}>{z}</div>
+                    ))}
+                  </div>
+                  <strong style={{fontSize:'0.82rem'}}>Zielkonflikte:</strong> <span style={{fontSize:'0.82rem', color:'var(--text-muted)'}}>Wachstum ↔ Umwelt, Vollbeschäftigung ↔ Preisstabilität, Verteilung ↔ Wachstum</span>
+                  {expanded === 'pol' && <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(245,158,11,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}><strong>Keynes vs. Angebotspolitik:</strong> Keynes: In Krisen Nachfrage stützen (Staatsausgaben). Angebotspolitik: Rahmenbedingungen verbessern (Steuersenkungen, Deregulierung). EZB (Lagarde): Preisstabilität nahe 2 %.</div>}
+                  <button onClick={() => toggle('pol')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#d97706', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>{expanded === 'pol' ? '▲ weniger' : '▼ Keynes vs. Angebotspolitik'}</button>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="red">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🏛️</div><div><div className="lp-tile-title">Markt und Staat</div><div className="lp-tile-subtitle">Aufgaben des Staates</div></div></div>
+                <div className="lp-tile-body">
+                  <ul>
+                    <li><strong>Ordnungsrahmen</strong> – Eigentumsrechte, Vertragsfreiheit</li>
+                    <li><strong>Öffentliche Güter</strong> – nicht rival, nicht ausschließbar</li>
+                    <li><strong>Wettbewerbssicherung</strong> – Bundeskartellamt</li>
+                    <li><strong>Soziale Sicherung</strong> – Sozialversicherung, Transferleistungen</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="purple">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🌱</div><div><div className="lp-tile-title">Wachstum & Umwelt</div><div className="lp-tile-subtitle">Nachhaltigkeit als Zielkonflikt</div></div></div>
+                <div className="lp-tile-body">
+                  <ul>
+                    <li><strong>BIP-Wachstum</strong> vs. <strong>ökologische Grenzen</strong></li>
+                    <li><strong>Externe Effekte</strong> – Umweltverschmutzung als Marktversagen</li>
+                    <li><strong>Instrumente</strong> – CO₂-Steuer, Emissionshandel, Subventionen</li>
+                    <li><strong>Postwachstum</strong> – Debatte um Grenzen des Wachstums</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-connections">
+                <h4>Zusammenhänge</h4>
+                <div className="lp-conn-list">
+                  <div className="lp-conn-item"><span>Prinzipien</span><span className="arrow">→</span><span>fundieren die SMW</span></div>
+                  <div className="lp-conn-item"><span>Sechseck-Ziele</span><span className="arrow">↔</span><span>Zielkonflikte</span></div>
+                  <div className="lp-conn-item"><span>Marktversagen</span><span className="arrow">→</span><span>rechtfertigt Staatseingriffe</span></div>
+                  <div className="lp-conn-item"><span>Ungleichheit</span><span className="arrow">→</span><span>Umverteilung durch Staat</span></div>
+                </div>
+              </div>
+              <div className="lp-summary">
+                <h4>Schlüsselbegriffe für die Prüfung</h4>
+                <div className="lp-summary-grid">
+                  <div className="lp-summary-item"><strong>Soziale Marktwirtschaft</strong><span>Markt + sozialer Ausgleich (Müller-Armack)</span></div>
+                  <div className="lp-summary-item"><strong>Gini-Koeffizient</strong><span>Maß für Verteilungsungleichheit</span></div>
+                  <div className="lp-summary-item"><strong>Öffentliches Gut</strong><span>Nicht rival, nicht ausschließbar</span></div>
+                  <div className="lp-summary-item"><strong>Keynesianismus</strong><span>Nachfragesteuerung in Krisen</span></div>
+                  <div className="lp-summary-item"><strong>Bundeskartellamt</strong><span>Wettbewerbssicherung</span></div>
+                  <div className="lp-summary-item"><strong>Externe Effekte</strong><span>Nicht eingepreiste Kosten/Nutzen</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+        </div>
+      );
+    }
+
+    function Lernplakat131({ hasNext, nextLabel, onNext }) {
+      const [expanded, setExpanded] = useState(null);
+      const toggle = (id) => setExpanded(prev => prev === id ? null : id);
+      return (
+        <div className="content" style={{ maxWidth: '1100px' }}>
+          <div className="lernplakat">
+            <div className="lernplakat-hero">
+              <div className="lernplakat-hero-inner">
+                <div className="lp-badge">Kerncurriculum 13.1 · Niedersachsen · Abitur</div>
+                <h2>Friedens-<br/><span>sicherung</span></h2>
+                <p className="lp-sub">Konflikte, Terrorismus, NATO, Bundeswehr und Entwicklungspolitik – nationale und internationale Herausforderungen.</p>
+                <div className="lp-stats">
+                  <div className="lp-stat"><span className="lp-stat-num">4</span><span className="lp-stat-label">Themenfelder</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">30+</span><span className="lp-stat-label">NATO-Mitglieder</span></div>
+                  <div className="lp-stat"><span className="lp-stat-num">3</span><span className="lp-stat-label">Gewaltmerkmale</span></div>
+                </div>
+              </div>
+            </div>
+            <div className="lp-grid">
+              <div className="lp-tile" data-color="red">
+                <div className="lp-tile-header"><div className="lp-tile-icon">⚔️</div><div><div className="lp-tile-title">Konflikte & Kriege</div><div className="lp-tile-subtitle">Ursachen, Merkmale, Neue Kriege</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{marginBottom:'0.5rem'}}><span className="lp-tile-tag">Neue Kriege</span><span className="lp-tile-tag">innerstaatlich</span><span className="lp-tile-tag">asymmetrisch</span></div>
+                  <ul>
+                    <li><strong>Neue Kriege</strong> – Privatisierung, Ökonomisierung, Entrechtlichung der Gewalt</li>
+                    <li><strong>Innerstaatlich</strong> – Bürgerkriege, ethnische Konflikte, Failed States</li>
+                    <li><strong>Ursachen</strong> – Ressourcen, Ethnien, Religion, Machtinteressen</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-tile" data-color="orange">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🛡️</div><div><div className="lp-tile-title">Terrorismus</div><div className="lp-tile-subtitle">Erscheinungsformen & Maßnahmen</div></div></div>
+                <div className="lp-tile-body">
+                  <ul>
+                    <li><strong>Definition</strong> – Politisch motivierte Gewalt, Angst und Schrecken</li>
+                    <li><strong>Formen</strong> – religiös, ethno-nationalistisch, links/rechtsextrem</li>
+                    <li><strong>Maßnahmen</strong> – Polizeikooperation, Prävention, Überwachung</li>
+                    <li><strong>Zielkonflikt</strong> – Sicherheit ↔ Freiheit (Massenüberwachung)</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-tile full-width" data-color="blue">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🇩🇪</div><div><div className="lp-tile-title">Außen- & Sicherheitspolitik</div><div className="lp-tile-subtitle">NATO, EU, Bundeswehr</div></div></div>
+                <div className="lp-tile-body">
+                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'0.5rem', marginBottom:'0.65rem'}}>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(59,130,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>NATO</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>Art. 5, Bündnisfall, 2%-Ziel</span>
+                    </div>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(59,130,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>EU (GASP/GSVP)</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>Gemeinsame Außenpolitik</span>
+                    </div>
+                    <div style={{padding:'0.55rem', borderRadius:'10px', background:'rgba(59,130,246,0.06)', textAlign:'center'}}>
+                      <strong style={{fontSize:'0.82rem', display:'block'}}>Bundeswehr</strong>
+                      <span style={{fontSize:'0.75rem', color:'var(--text-muted)'}}>Parlamentsarmee, Zeitenwende</span>
+                    </div>
+                  </div>
+                  {expanded === 'nato' && <div style={{marginTop:'0.5rem', padding:'0.65rem', background:'rgba(59,130,246,0.06)', borderRadius:'10px', fontSize:'0.82rem', lineHeight:'1.55'}}><strong>Stand 2026:</strong> NATO-Generalsekretär Mark Rutte. Zeitenwende (Scholz, 27.2.2022): 100 Mrd. Sondervermögen, 2%-Ziel. Bundeswehr: Parlamentsarmee, Einsätze nur mit Bundestag. Sicherheitsdilemma: Aufrüstung → Rüstungsspirale.</div>}
+                  <button onClick={() => toggle('nato')} style={{marginTop:'0.5rem', fontSize:'0.78rem', color:'#2563eb', background:'none', border:'none', cursor:'pointer', fontFamily:'inherit', fontWeight:600}}>{expanded === 'nato' ? '▲ weniger' : '▼ Zeitenwende & Stand 2026'}</button>
+                </div>
+                <div className="lp-tile-persons">
+                  <div className="lp-person"><div className="lp-person-avatar">MR</div><div className="lp-person-info"><strong>Mark Rutte</strong><span>NATO-Generalsekretär seit 2024</span></div></div>
+                </div>
+              </div>
+              <div className="lp-tile full-width" data-color="green">
+                <div className="lp-tile-header"><div className="lp-tile-icon">🌍</div><div><div className="lp-tile-title">Entwicklungspolitik</div><div className="lp-tile-subtitle">Präventive Friedenspolitik</div></div></div>
+                <div className="lp-tile-body">
+                  <ul>
+                    <li><strong>Ziele</strong> – Armutsbekämpfung, Demokratieförderung, nachhaltige Entwicklung</li>
+                    <li><strong>Instrumente</strong> – ODA, technische Zusammenarbeit, Bildung</li>
+                    <li><strong>Prävention</strong> – Konfliktverhütung durch Diplomatie und Entwicklung</li>
+                    <li><strong>SDGs</strong> – 17 Nachhaltigkeitsziele der UN (Agenda 2030)</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="lp-connections">
+                <h4>Zusammenhänge</h4>
+                <div className="lp-conn-list">
+                  <div className="lp-conn-item"><span>Neue Kriege</span><span className="arrow">→</span><span>erfordern neue Sicherheitspolitik</span></div>
+                  <div className="lp-conn-item"><span>Terrorismus</span><span className="arrow">↔</span><span>Sicherheit vs. Freiheit</span></div>
+                  <div className="lp-conn-item"><span>NATO + EU</span><span className="arrow">→</span><span>kollektive Sicherheit</span></div>
+                  <div className="lp-conn-item"><span>Entwicklungspolitik</span><span className="arrow">→</span><span>präventive Friedenssicherung</span></div>
+                </div>
+              </div>
+              <div className="lp-summary">
+                <h4>Schlüsselbegriffe für die Prüfung</h4>
+                <div className="lp-summary-grid">
+                  <div className="lp-summary-item"><strong>Neue Kriege</strong><span>Privatisierung, Ökonomisierung, Entrechtlichung</span></div>
+                  <div className="lp-summary-item"><strong>Art. 5 NATO</strong><span>Angriff auf einen = Angriff auf alle</span></div>
+                  <div className="lp-summary-item"><strong>Zeitenwende</strong><span>Scholz 2022, neue Sicherheitslage</span></div>
+                  <div className="lp-summary-item"><strong>Sicherheitsdilemma</strong><span>Aufrüstung → Bedrohung → Rüstungsspirale</span></div>
+                  <div className="lp-summary-item"><strong>Parlamentsarmee</strong><span>Bundeswehr nur mit Zustimmung des BT</span></div>
+                  <div className="lp-summary-item"><strong>GASP/GSVP</strong><span>EU Außen- und Sicherheitspolitik</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <NextSection hasNext={hasNext} nextLabel={nextLabel} onNext={onNext} />
+        </div>
+      );
+    }
 
     function Lernplakat132({ hasNext, nextLabel, onNext, onNavigateToModule }) {
       const [expanded, setExpanded] = useState(null);
@@ -4117,6 +5766,15 @@
       const wrongTopics = [...new Set(questions.filter((qu, i) => answers[i] !== qu.correct).map(qu => qu.topic))];
       const isComplete = currentIndex >= total && total > 0;
 
+      React.useEffect(() => {
+        if (isComplete && label) {
+          try {
+            const key = 'politik-quiz-' + label.replace(/[^a-zA-Z0-9]/g, '-');
+            localStorage.setItem(key, JSON.stringify({ score, total, date: new Date().toISOString().slice(0,10) }));
+          } catch(e) {}
+        }
+      }, [isComplete]);
+
       const restartOnlyWrong = () => {
         const wrongQuestions = questions.filter((qu, i) => answers[i] !== qu.correct);
         setQuestions(wrongQuestions.length > 0 ? wrongQuestions : allQuestions);
@@ -4332,6 +5990,13 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
       );
     }
 
+    const FLASHCARD_DATA_MAP = {
+      'FLASHCARD_12_1': FLASHCARD_12_1,
+      'FLASHCARD_12_2': FLASHCARD_12_2,
+      'FLASHCARD_13_1': FLASHCARD_13_1,
+      'FLASHCARD_TERMS': FLASHCARD_TERMS,
+    };
+
     const QUIZ_DATA_MAP = {
       'QUIZ_12_1': QUIZ_12_1,
       'QUIZ_12_2': QUIZ_12_2,
@@ -4342,12 +6007,21 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
     const SECTION_COMPONENTS = {
       GlobalSection, TheoriesSection, LeitbilderSection, HemmnisseSection,
       RegimeSection, FlashcardsSection, QuizSection, CurriculumOutlineSection, FullContentSection,
-      Lernplakat132
+      Lernplakat121, Lernplakat122, Lernplakat131, Lernplakat132, OperatorenGlossar, WahrFalschSection
     };
 
     function App() {
+      const [theme, setTheme] = useState(() => {
+        try { return localStorage.getItem('politik-app-theme') || 'light'; } catch(e) { return 'light'; }
+      });
+      React.useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem('politik-app-theme', theme); } catch(e) {}
+      }, [theme]);
+      const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light');
       const [courseId, setCourseId] = useState(null);
       const [moduleId, setModuleId] = useState(null);
+      const [extraView, setExtraView] = useState(null); // 'operatoren', 'lernplakat-12-1', etc.
       const [visited, setVisited] = useState(() => {
         try {
           const s = localStorage.getItem('politik-app-visited');
@@ -4378,21 +6052,32 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
         onNext: () => { if (nextModule) { setModuleId(nextModule.id); window.scrollTo(0, 0); } },
         onNavigateToModule: (cid, mid) => { setCourseId(cid); setModuleId(mid); window.scrollTo(0, 0); },
       };
-      const isCourseList = courseId === null;
-      const isModuleGrid = courseId && !moduleId;
-      const isModuleContent = courseId && moduleId;
+      const isExtra = extraView !== null;
+      const isCourseList = courseId === null && !isExtra;
+      const isModuleGrid = courseId && !moduleId && !isExtra;
+      const isModuleContent = courseId && moduleId && !isExtra;
+
+      const EXTRA_COMPONENTS = {
+        'operatoren': OperatorenGlossar,
+        'lernplakat-12-1': Lernplakat121,
+        'lernplakat-12-2': Lernplakat122,
+        'lernplakat-13-1': Lernplakat131,
+        'lernplakat-13-2': Lernplakat132,
+      };
+      const ExtraComponent = isExtra ? EXTRA_COMPONENTS[extraView] : null;
+      const goHome = () => { setCourseId(null); setModuleId(null); setExtraView(null); };
+      const openExtra = (v) => { setCourseId(null); setModuleId(null); setExtraView(v); window.scrollTo(0,0); };
 
       const ActiveComponent = isModuleContent && currentModule ? SECTION_COMPONENTS[currentModule.component] : null;
 
       return (
         <div className="app">
-          <header className="header">
+          <button type="button" className="theme-toggle" onClick={toggleTheme} aria-label="Dark Mode umschalten" title={theme === 'light' ? 'Dark Mode' : 'Light Mode'}>{theme === 'light' ? '🌙' : '☀️'}</button>
+          <header className="header" onClick={goHome} style={{ cursor: 'pointer' }}>
             <div className="header-inner">
-              <h1>{course ? course.name : 'Abitur Politik-Wirtschaft'}</h1>
+              <h1>Abitur Politik-Wirtschaft</h1>
               <p className="tagline">
-                <strong>Lern deinen Weg</strong>
-                {course ? ` · Kerncurriculum ${course.curriculum}` : ' · Niedersachsen'}
-                {' · Abitur Politik-Wirtschaft (Niedersachsen)'}
+                <strong>Lern deinen Weg</strong>{' · Niedersachsen · Abitur Politik-Wirtschaft'}
               </p>
             </div>
           </header>
@@ -4419,33 +6104,72 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
               </div>
             </div>
           )}
-          <nav className="nav">
-            <button type="button" className={'nav-btn' + (isCourseList ? ' active' : '')} onClick={() => { setCourseId(null); setModuleId(null); }}>Halbjahre</button>
-            {course && (
+
+          {(isModuleGrid || isModuleContent || isExtra) && (
+            <div className="site-breadcrumb">
+              <button type="button" className="bc-link" onClick={goHome}>Halbjahre</button>
+              {course && !isExtra && (
+                <>
+                  <span className="bc-sep">›</span>
+                  {isModuleContent ? (
+                    <button type="button" className="bc-link" onClick={() => setModuleId(null)}>{course.curriculum} – {course.shortName}</button>
+                  ) : (
+                    <span className="bc-current">{course.curriculum} – {course.shortName}</span>
+                  )}
+                </>
+              )}
+              {isModuleContent && currentModule && (
+                <>
+                  <span className="bc-sep">›</span>
+                  <span className="bc-current">{currentModule.label}</span>
+                </>
+              )}
+              {isExtra && (
+                <>
+                  <span className="bc-sep">›</span>
+                  {extraView !== 'operatoren' && (
+                    <>
+                      <span className="bc-current">Lernplakate</span>
+                      <span className="bc-sep">›</span>
+                      <span className="bc-current">{extraView.replace('lernplakat-','').replace('-','.')}</span>
+                    </>
+                  )}
+                  {extraView === 'operatoren' && <span className="bc-current">Operatoren-Glossar</span>}
+                </>
+              )}
+            </div>
+          )}
+          {isExtra && extraView !== 'operatoren' && (
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.4rem', flexWrap: 'wrap', padding: '0.6rem 1rem', background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>
+              {['12-1','12-2','13-1','13-2'].map(cid => (
+                <button key={cid} type="button" onClick={() => openExtra('lernplakat-' + cid)}
+                  style={{ fontFamily: 'inherit', fontSize: '0.85rem', fontWeight: extraView === 'lernplakat-' + cid ? 700 : 500, padding: '0.35rem 0.85rem', borderRadius: '8px', border: extraView === 'lernplakat-' + cid ? '2px solid var(--primary)' : '1px solid var(--border)', background: extraView === 'lernplakat-' + cid ? 'rgba(26,115,232,0.1)' : 'var(--surface)', color: extraView === 'lernplakat-' + cid ? 'var(--primary)' : 'var(--text-muted)', cursor: 'pointer', transition: 'all 0.15s' }}>
+                  {cid.replace('-','.')}
+                </button>
+              ))}
+            </div>
+          )}
+          <main className="app-main">
+            {isExtra && ExtraComponent && (
+              <ExtraComponent hasNext={false} />
+            )}
+            {isCourseList && (
               <>
-                <button type="button" className={'nav-btn' + (isModuleGrid ? ' active' : '')} onClick={() => setModuleId(null)}>Übersicht</button>
-                {modules.map(mod => (
-                  <button
-                    key={mod.id}
-                    type="button"
-                    className={'nav-btn' + (moduleId === mod.id ? ' active' : '')}
-                    onClick={() => setModuleId(mod.id)}
-                  >
-                    {mod.label}
-                    {visited[visitKey(courseId, mod.id)] && <span className="visited-dot" />}
-                  </button>
-                ))}
+                <CourseListSection onSelectCourse={(id) => { setCourseId(id); setModuleId(null); setExtraView(null); }} visited={visited} />
+                <div className="home-extras">
+                  <h3 className="home-extras-title">Werkzeuge</h3>
+                  <div className="home-extras-row">
+                    <button type="button" className="home-extra-chip" onClick={() => openExtra('operatoren')}>📝 Operatoren-Glossar</button>
+                    {[{id:'12-1',l:'12.1'},{id:'12-2',l:'12.2'},{id:'13-1',l:'13.1'},{id:'13-2',l:'13.2'}].map(lp => (
+                      <button key={lp.id} type="button" className="home-extra-chip" onClick={() => openExtra('lernplakat-' + lp.id)}>🗺️ Lernplakat {lp.l}</button>
+                    ))}
+                  </div>
+                </div>
               </>
             )}
-          </nav>
-          <main className="app-main">
-            {isCourseList && <CourseListSection onSelectCourse={(id) => { setCourseId(id); setModuleId(null); }} visited={visited} />}
-            {isModuleGrid && <ModuleGridSection course={course} onVisited={onVisited} onSelectModule={setModuleId} visited={visited} />}
+            {isModuleGrid && <ModuleGridSection course={course} onVisited={onVisited} onSelectModule={setModuleId} visited={visited} onOpenExtra={openExtra} />}
             {isModuleContent && (
               <>
-                <div className="back-link-wrap">
-                  <button type="button" className="back-link" onClick={() => setModuleId(null)}>← Zur Übersicht</button>
-                </div>
                 {ActiveComponent ? (
                   <ActiveComponent
                     module={currentModule}
@@ -4455,6 +6179,10 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
                     visited={visited}
                     quizData={currentModule.quizData ? QUIZ_DATA_MAP[currentModule.quizData] : undefined}
                     quizLabel={currentModule.quizLabel || undefined}
+                    flashcardData={currentModule.flashcardData ? FLASHCARD_DATA_MAP[currentModule.flashcardData] : undefined}
+                    flashcardLabel={currentModule.flashcardLabel || undefined}
+                    wahrFalschData={currentModule.wahrFalschData || undefined}
+                    wahrFalschLabel={currentModule.wahrFalschLabel || undefined}
                     {...progressProps}
                   />
                 ) : (
