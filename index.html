@@ -1436,7 +1436,37 @@
       color: white;
       font-weight: 600;
       font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
+    .chatbot-api-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .chatbot-api-btn:hover { background: rgba(255,255,255,0.3); }
+    .chatbot-api-config {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .chatbot-api-config label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .chatbot-api-config input[type="url"] { width: 100%; padding: 0.5rem 0.65rem; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; margin-bottom: 0.5rem; box-sizing: border-box; }
+    .chatbot-api-config-actions { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .chatbot-api-config-actions button { padding: 0.4rem 0.75rem; font-size: 0.8rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); cursor: pointer; }
+    .chatbot-api-config-actions button:first-child { background: var(--primary); color: white; border-color: var(--primary); }
+    .chatbot-api-hint { margin: 0; font-size: 0.7rem; color: var(--text-muted); line-height: 1.4; }
     .chatbot-messages {
       flex: 1;
       overflow-y: auto;
@@ -5915,23 +5945,27 @@
       return 'Zu diesem Stichwort habe ich keine passende Antwort. Frag konkret z.B. nach Verfassungsorganen, Demokratietheorien, Magischem Sechseck, NATO oder Prüfungsfragen – dann kann ich dir gezielt helfen.';
     }
 
-    // Optional: API-Anbindung mit Kontext (System-Prompt). Backend hält API-Key sicher.
-    // Erwartetes Request-Body: { systemPrompt: string, messages: [{ role: 'user'|'assistant', content: string }] }
-    // Erwartete Response: { reply: string } ODER { content: string } ODER OpenAI-Format { choices: [{ message: { content } }] }
-    const CHATBOT_API_URL = ''; // z.B. 'https://dein-server.de/api/chat' – leer = nur lokaler Bot
+    // Chat-API für alle Besucher: Hier die URL deines Backends eintragen (z.B. nach Deploy von /api/chat).
+    // Dann nutzt jeder Besucher automatisch den KI-Chat – der API-Key bleibt sicher auf deinem Server.
+    const CHATBOT_API_URL = ''; // z.B. 'https://deine-app.vercel.app/api/chat'
+    const CHATBOT_STORAGE_KEY = 'powi-chat-api-url';
     const CHATBOT_SYSTEM_PROMPT = `Du bist ein Lern-Assistent für das Fach Politik-Wirtschaft, Abitur Kerncurriculum Niedersachsen.
 Kontext: Die Lernapp umfasst vier Halbjahre: 12.1 (Demokratie, Verfassungsorgane, Partizipation, Demokratietheorien, politische Akteure), 12.2 (Markt und Staat, Wirtschaftspolitik, Magisches Sechseck, Prinzipien), 13.1 (Konflikte/Kriege, Terrorismus, Sicherheitspolitik), 13.2 (Globalisierung, Theorien, Leitbilder, Hemmnisse, Regime).
 Aktuelle Angaben Stand 2026: Bundeskanzler Friedrich Merz (CDU), Bundespräsident Frank-Walter Steinmeier, NATO-Generalsekretär Mark Rutte. Begriffe wie „Zeitenwende“ (geprägt von Olaf Scholz, 27.2.2022) sind historisch einzuordnen.
 Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, verweise auf die Themen in der App. Sprache: Deutsch.`;
 
     async function chatWithApi(apiUrl, systemPrompt, messages) {
-      const body = { systemPrompt, messages: messages.map(m => ({ role: m.role, content: m.text })) };
+      const openAiMessages = [
+        { role: 'system', content: systemPrompt },
+        ...messages.map(function(m) { return { role: m.role === 'bot' ? 'assistant' : 'user', content: m.text }; }),
+      ];
+      const body = { model: 'gpt-4o-mini', messages: openAiMessages };
       const res = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText || 'API-Fehler');
       const data = await res.json();
       if (data.reply) return data.reply;
       if (data.content) return data.content;
@@ -5946,7 +5980,17 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
       ]);
       const [input, setInput] = useState('');
       const [loading, setLoading] = useState(false);
-      const apiUrl = (typeof CHATBOT_API_URL === 'string' && CHATBOT_API_URL.trim()) ? CHATBOT_API_URL.trim() : '';
+      const [showApiConfig, setShowApiConfig] = useState(false);
+      const defaultUrl = (typeof CHATBOT_API_URL === 'string' && CHATBOT_API_URL.trim()) ? CHATBOT_API_URL.trim() : '';
+      const [apiUrlInput, setApiUrlInput] = useState(function(){
+        try { return localStorage.getItem(CHATBOT_STORAGE_KEY) || defaultUrl; } catch (e) { return defaultUrl; }
+      });
+      const apiUrl = (typeof apiUrlInput === 'string' && apiUrlInput.trim()) ? apiUrlInput.trim() : '';
+      const saveApiUrl = function() {
+        var val = (typeof apiUrlInput === 'string' && apiUrlInput.trim()) ? apiUrlInput.trim() : '';
+        try { if (val) localStorage.setItem(CHATBOT_STORAGE_KEY, val); else localStorage.removeItem(CHATBOT_STORAGE_KEY); } catch (e) {}
+        setShowApiConfig(false);
+      };
       const send = async () => {
         const val = input.trim();
         if (!val || loading) return;
@@ -5974,7 +6018,21 @@ Antworte prägnant, sachlich und prüfungsorientiert. Wenn du unsicher bist, ver
           <button type="button" className="chatbot-toggle" onClick={() => setOpen(o => !o)} aria-label="Lern-Bot öffnen">💬</button>
           {open && (
             <div className="chatbot-panel">
-              <div className="chatbot-panel-header">Abitur PoWi – Verständnisfragen</div>
+              <div className="chatbot-panel-header">
+                <span>Abitur PoWi – Verständnisfragen</span>
+                <button type="button" className="chatbot-api-btn" onClick={() => setShowApiConfig(s => !s)} title="API konfigurieren">⚙</button>
+              </div>
+              {showApiConfig && (
+                <div className="chatbot-api-config">
+                  <label>Chat-API-URL (Backend mit API-Key):</label>
+                  <input type="url" placeholder="https://dein-server.de/api/chat" value={apiUrlInput} onChange={e => setApiUrlInput(e.target.value)} />
+                  <div className="chatbot-api-config-actions">
+                    <button type="button" onClick={saveApiUrl}>Speichern</button>
+                    <button type="button" onClick={() => setShowApiConfig(false)}>Schließen</button>
+                  </div>
+                  <p className="chatbot-api-hint">Leer = nur lokaler Bot. Backend erwartet OpenAI-Format (POST mit messages, Antwort choices[0].message.content).</p>
+                </div>
+              )}
               <div className="chatbot-messages">
                 {messages.map((msg, i) => (
                   <div key={i} className={'chatbot-msg ' + msg.role + (msg.loading ? ' loading' : '')}>{msg.text}</div>

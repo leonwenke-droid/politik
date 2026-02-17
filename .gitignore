@@ -1,0 +1,6 @@
+# Lokale Umgebungsvariablen (API-Key nie committen)
+.env
+
+# Vercel / Node
+node_modules/
+.vercel/
